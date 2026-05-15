@@ -1,0 +1,17 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "puppycraft:block/puppy_pad"
+      }
+    },
+    {
+      "apply": {
+        "model": "puppycraft:block/puppypad_urine_light"
+      },
+      "when": {
+        "pad_usage": "light"
+      }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "diaper_soiling": {
+    "subtitle": "puppycraft.diaper_soiling",
+    "sounds": [
+      "puppycraft:soiling0",
+      "puppycraft:soiling1",
+      "puppycraft:soiling2",
+      "puppycraft:soiling3"
+    ]
+  }
+}

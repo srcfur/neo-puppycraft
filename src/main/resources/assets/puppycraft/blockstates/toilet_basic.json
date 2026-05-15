@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "diaperpants:block/toilet_basic" },
+    "facing=east": { "model": "diaperpants:block/toilet_basic", "y": 90 },
+    "facing=south": { "model": "diaperpants:block/toilet_basic", "y": 180 },
+    "facing=west": { "model": "diaperpants:block/toilet_basic", "y": 270 }
+  }
+}

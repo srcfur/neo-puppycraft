@@ -1,0 +1,44 @@
+{
+  "effect.diaperpants.full": "Full",
+
+  "trinkets.slot.legs.diaper": "Diaper",
+  "trinkets.slot.head.mouth": "Mouth",
+
+  "item.puppycraft.cheapdiaper": "Paper Diaper",
+  "item.puppycraft.medicaldiaper": "Diaper",
+  "item.puppycraft.megadiaper": "Mega Capacity Diaper",
+  "item.puppycraft.subspacediaper": "Subspace Diaper",
+  "item.puppycraft.pullupdiaper": "Pullup Diaper",
+  "item.puppycraft.bunnyhoppsdiaper": "BunnyHopps Diaper",
+
+  "item.puppycraft.quesadilla": "Quesadilla",
+
+  "item.puppycraft.diapersap": "Super Absorbent Polymer",
+  "item.puppycraft.diapercore": "Heavy Duty Diaper Core",
+  "item.puppycraft.cheapdiapercore": "Absorbent Diaper Core",
+  "item.puppycraft.cheapdiapersap": "Absorbent Polymer",
+  "item.puppycraft.woodpulp": "Pulp",
+  "item.puppycraft.threediapercore": "Triple Diaper Core",
+
+  "item.puppycraft.pacifier": "Pacifier",
+
+  "block.puppycraft.puppy_pastel_blue": "Cloudy Wallpaper",
+  "block.puppycraft.puppy_pastel_pink": "Lovely Wallpaper",
+  "block.puppycraft.diaperassembler": "Diaper Press",
+
+
+  "block.puppycraft.diaper_bag": "Empty Diaper Bag",
+  "block.puppycraft.diaper_bag.pullupdiaper": "Bag of Pull Ups",
+  "block.puppycraft.diaper_bag.medicaldiaper": "Bag of Medical Diapers",
+  "block.puppycraft.diaper_bag": "Empty Diaper Bag",
+  "block.puppycraft.diaper_bag": "Empty Diaper Bag",
+
+  "puppycraft.diaperassembler.storagename": "Diaper Assembler Machine",
+
+  "stat.minecraft.bedwetter": "Times peed the bed",
+  "stat.minecraft.bladderfailstat": "Times peed pants",
+  "stat.minecraft.poopedpants": "Times pooped pants",
+  "stat.minecraft.saggingdiaper": "Time spent in full diapers",
+
+  "puppycraft.diaper_soiling": "Pooping Pants"
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "puppycraft:block/diaper_bag",
+  "textures": {
+    "0": "puppycraft:block/bags/phightingdiaperbag",
+    "particle": "puppycraft:block/bags/phightingdiaperbag"
+  }
+}

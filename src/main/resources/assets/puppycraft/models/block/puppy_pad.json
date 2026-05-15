@@ -1,0 +1,6 @@
+{
+  "parent": "puppycraft:block/pad_base",
+  "textures": {
+    "wool": "puppycraft:block/puppy_pad_dry"
+  }
+}

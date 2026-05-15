@@ -1,0 +1,25 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"texture_size": [64, 64],
+	"textures": {
+		"0": "puppycraft:block/bag0",
+		"particle": "puppycraft:block/bags/generic"
+	},
+	"elements": [
+		{
+			"from": [3, 0, 0],
+			"to": [13, 10, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [3, 0, 0]},
+			"faces": {
+				"north": {"uv": [6, 0, 12, 6], "texture": "#0"},
+				"east": {"uv": [0, 8.5, 12, 16], "texture": "#0"},
+				"south": {"uv": [0, 0, 6, 6], "texture": "#0"},
+				"west": {"uv": [0, 8.5, 12, 16], "texture": "#0"},
+				"up": {"uv": [12, 0, 16, 8.5], "texture": "#0"},
+				"down": {"uv": [0, 6, 4, 8.5], "texture": "#0"}
+			}
+		}
+	]
+}

@@ -1,0 +1,38 @@
+{
+  "variants": {
+    "diaperfamily=generic,facing=north": { "model": "puppycraft:block/bags/generic", "y": 270 },
+    "diaperfamily=generic,facing=east": { "model": "puppycraft:block/bags/generic", "y": 0 },
+    "diaperfamily=generic,facing=south": { "model": "puppycraft:block/bags/generic", "y": 90 },
+    "diaperfamily=generic,facing=west": { "model": "puppycraft:block/bags/generic", "y": 180 },
+
+    "diaperfamily=cheap,facing=north": { "model": "puppycraft:block/bags/cheap", "y": 270 },
+    "diaperfamily=cheap,facing=east": { "model": "puppycraft:block/bags/cheap", "y": 0 },
+    "diaperfamily=cheap,facing=south": { "model": "puppycraft:block/bags/cheap", "y": 90 },
+    "diaperfamily=cheap,facing=west": { "model": "puppycraft:block/bags/cheap", "y": 180 },
+
+    "diaperfamily=medical,facing=north": { "model": "puppycraft:block/bags/medical", "y": 270 },
+    "diaperfamily=medical,facing=east": { "model": "puppycraft:block/bags/medical", "y": 0 },
+    "diaperfamily=medical,facing=south": { "model": "puppycraft:block/bags/medical", "y": 90 },
+    "diaperfamily=medical,facing=west": { "model": "puppycraft:block/bags/medical", "y": 180 },
+
+    "diaperfamily=mega,facing=north": { "model": "puppycraft:block/bags/mega", "y": 270 },
+    "diaperfamily=mega,facing=east": { "model": "puppycraft:block/bags/mega", "y": 0 },
+    "diaperfamily=mega,facing=south": { "model": "puppycraft:block/bags/mega", "y": 90 },
+    "diaperfamily=mega,facing=west": { "model": "puppycraft:block/bags/mega", "y": 180 },
+
+    "diaperfamily=pullup,facing=north": { "model": "puppycraft:block/bags/pullup", "y": 270 },
+    "diaperfamily=pullup,facing=east": { "model": "puppycraft:block/bags/pullup", "y": 0 },
+    "diaperfamily=pullup,facing=south": { "model": "puppycraft:block/bags/pullup", "y": 90 },
+    "diaperfamily=pullup,facing=west": { "model": "puppycraft:block/bags/pullup", "y": 180 },
+
+    "diaperfamily=bunnyhopps,facing=north": { "model": "puppycraft:block/bags/bunnyhopps", "y": 270 },
+    "diaperfamily=bunnyhopps,facing=east": { "model": "puppycraft:block/bags/bunnyhopps", "y": 0 },
+    "diaperfamily=bunnyhopps,facing=south": { "model": "puppycraft:block/bags/bunnyhopps", "y": 90 },
+    "diaperfamily=bunnyhopps,facing=west": { "model": "puppycraft:block/bags/bunnyhopps", "y": 180 },
+
+    "diaperfamily=phighting,facing=north": { "model": "puppycraft:block/bags/phighting", "y": 270 },
+    "diaperfamily=phighting,facing=east": { "model": "puppycraft:block/bags/phighting", "y": 0 },
+    "diaperfamily=phighting,facing=south": { "model": "puppycraft:block/bags/phighting", "y": 90 },
+    "diaperfamily=phighting,facing=west": { "model": "puppycraft:block/bags/phighting", "y": 180 }
+  }
+}
