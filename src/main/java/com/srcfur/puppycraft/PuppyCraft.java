@@ -10,8 +10,8 @@ import com.srcfur.puppycraft.diapers.diaperbag.DiaperBagBlock;
 import com.srcfur.puppycraft.diapers.diaperbag.DiaperBagEntity;
 import com.srcfur.puppycraft.diapers.diaperbag.DiaperBagItem;
 import com.srcfur.puppycraft.puppyblocks.PuppyPadBlock;
-import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
@@ -22,15 +22,8 @@ import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.MapColor;
-import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
@@ -40,12 +33,8 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
-import top.theillusivec4.curios.api.CuriosApi;
-import top.theillusivec4.curios.api.SlotContext;
-import top.theillusivec4.curios.api.SlotResult;
 
 import java.util.Optional;
-import java.util.Stack;
 
 import static com.srcfur.puppycraft.diapers.Diapers.SOILING_NOISE;
 
@@ -127,21 +116,17 @@ public class PuppyCraft {
 
         //Building our diaperbag here!
         DIAPER_BAG_BLOCK =
-                BLOCKS.register("diaper_bag", () -> new DiaperBagBlock(BlockBehaviour.Properties.of().noOcclusion()
-                        .setId(ResourceKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(MODID, "diaper_bag")))));
+                BLOCKS.register("diaper_bag", () -> new DiaperBagBlock(BlockBehaviour.Properties.of().noOcclusion()));
         DIAPER_BAG_ENTITY =
                 BLOCK_ENTITY.register("diaper_bag_entity",
-                        ()->new BlockEntityType<>(
+                        ()->BlockEntityType.Builder.of(
                                 DiaperBagEntity::new,
                                 DIAPER_BAG_BLOCK.value()
-                        ));
-        DIAPER_BAG_ITEM = ITEMS.register("diaper_bag", ()-> new DiaperBagItem(DIAPER_BAG_BLOCK.value(), new Item.Properties().stacksTo(1)
-                .setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(MODID, "diaper_bag")))));
+                        ).build(null));
+        DIAPER_BAG_ITEM = ITEMS.register("diaper_bag", ()-> new DiaperBagItem(DIAPER_BAG_BLOCK.value(), new Item.Properties().stacksTo(1)));
 
-        PUPPY_PAD_BLOCK = BLOCKS.register("puppy_pad", ()-> new PuppyPadBlock(BlockBehaviour.Properties.of().noOcclusion()
-                .setId(ResourceKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(MODID, "diaper_bag")))));
-        ITEMS.register("puppy_pad", ()->new BlockItem(PUPPY_PAD_BLOCK.value(), new Item.Properties()
-                .setId(ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(MODID, "diaper_bag")))));
+        PUPPY_PAD_BLOCK = BLOCKS.register("puppy_pad", ()-> new PuppyPadBlock(BlockBehaviour.Properties.of().noOcclusion()));
+        ITEMS.register("puppy_pad", ()->new BlockItem(PUPPY_PAD_BLOCK.value(), new Item.Properties()));
 
         Diapers.initialize();
     }
@@ -151,10 +136,6 @@ public class PuppyCraft {
     }
 
     public static Optional<ItemStack> getDiaperOnPlayer(Player player){
-        Optional<SlotResult> result = CuriosApi.getCuriosInventory(player).get().findCurio("underwear", 1, false);
-        if(result.isPresent()){
-            return Optional.of(result.get().stack());
-        }
         return Optional.empty();
     }
 

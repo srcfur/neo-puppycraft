@@ -9,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -57,12 +58,12 @@ public class DiaperBagBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if(stack.getItem().getClass() == DiaperItem.class){
             DiaperBagEntity ent = ((DiaperBagEntity)level.getBlockEntity(pos));
             stack = ent.insertDiaper(stack);
             player.setItemInHand(hand, stack);
-            return InteractionResult.CONSUME;
+            return ItemInteractionResult.CONSUME;
         }
         return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
     }
@@ -74,8 +75,9 @@ public class DiaperBagBlock extends BaseEntityBlock {
                 DiaperBagEntity ent = (DiaperBagEntity) level.getBlockEntity(pos);
                 ItemStack diaperbag = new ItemStack(PuppyCraft.DIAPER_BAG_ITEM.value());
                 diaperbag.setCount(1);
-                diaperbag.set(DiaperCodecs.DIAPER_BAG_COMPONENT, new DiaperBagData(ent.diapersheld, ent.diapers.get(0).typeHolder().getRegisteredName()));
-                player.setItemInHand(InteractionHand.MAIN_HAND, diaperbag);
+
+                //diaperbag.set(DiaperCodecs.DIAPER_BAG_COMPONENT, new DiaperBagData(ent.diapersheld, ent.diapers.get(0).typeHolder().getRegisteredName()));
+                //player.setItemInHand(InteractionHand.MAIN_HAND, diaperbag);
                 level.destroyBlock(pos, false);
             }else {
                 player.setItemInHand(InteractionHand.MAIN_HAND, ((DiaperBagEntity) level.getBlockEntity(pos)).getDiaper());

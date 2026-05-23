@@ -4,19 +4,12 @@ import com.srcfur.puppycraft.PuppyCraft;
 import com.srcfur.puppycraft.diapers.DiaperCodecs;
 import com.srcfur.puppycraft.diapers.DiaperItem;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.Tag;
-import net.minecraft.resources.Identifier;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.ValueOutput;
 import net.neoforged.neoforge.items.IItemHandler;
 
 import java.util.ArrayList;
@@ -106,7 +99,6 @@ public class DiaperBagEntity extends BlockEntity implements IItemHandler {
             diapers.set(i, ItemStack.parse(registries, tag.getList("diapers", Tag.TAG_COMPOUND).get(i)).get());
         }
     }
-*/
     @Override
     protected void saveAdditional(ValueOutput tag) {
         super.saveAdditional(tag);
@@ -132,4 +124,6 @@ public class DiaperBagEntity extends BlockEntity implements IItemHandler {
 
         }
     }
+
+ */
 }
