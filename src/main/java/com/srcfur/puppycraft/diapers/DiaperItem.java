@@ -48,10 +48,6 @@ public class DiaperItem extends ArmorItem implements GeoItem, ICurioItem, GeoRen
 
     }
 
-    @Override
-    public Component getName(ItemStack stack) {
-        return Component.translatable("item.puppycraft.diaperbag." + ((DiaperItem)stack.getItem()).family.getSerializedName());
-    }
 
     @Override
     public void createGeoRenderer(Consumer<GeoRenderProvider> consumer) {

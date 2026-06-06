@@ -7,6 +7,7 @@ import com.srcfur.puppycraft.diapers.diaperbag.DiaperBagBlock;
 import com.srcfur.puppycraft.diapers.diaperbag.DiaperBagEntity;
 import com.srcfur.puppycraft.diapers.diaperbag.DiaperBagItem;
 import com.srcfur.puppycraft.puppyblocks.PuppyPadBlock;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
@@ -111,6 +112,10 @@ public class PuppyCraft {
             return false;
         });
 
+        //HygieneAPI.event_player_pee_puddle.add(player -> {
+        //    return player.getInBlockState().getBlock() == PUPPY_PAD_BLOCK.get();
+        //});
+
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
@@ -130,6 +135,28 @@ public class PuppyCraft {
 
         PUPPY_PAD_BLOCK = BLOCKS.register("puppy_pad", ()-> new PuppyPadBlock(BlockBehaviour.Properties.of().noOcclusion()));
         ITEMS.register("puppy_pad", ()->new BlockItem(PUPPY_PAD_BLOCK.value(), new Item.Properties()));
+
+        CREATIVE_MODE_TABS.register(PuppyCraft.MODID,
+                ()-> CreativeModeTab.builder()
+                        .title(Component.translatable("itemgroup." + MODID + ".diapers"))
+                        .icon(()->{
+                            DiaperData data = Diapers.DIAPER_REGISTRY.get(ResourceLocation.fromNamespaceAndPath(PuppyCraft.MODID, "medicaldiaper"));
+                            if(data == null){
+                                return ItemStack.EMPTY;
+                            }
+                            return new ItemStack(data.GetItem(), 0);
+                })
+                        .displayItems((x,y) -> {
+                            Diapers.DIAPER_REGISTRY.stream().forEach(diaper ->{
+                                y.accept(diaper.GetItem());
+                            });
+                            Diapers.DIAPER_REGISTRY.stream().forEach(diaper -> {
+                                ItemStack bagOfDiapers = new ItemStack(DIAPER_BAG_ITEM.get());
+                                bagOfDiapers.set(DiaperCodecs.DIAPER_BAG_COMPONENT, new DiaperBagData(diaper.GetItem().family.GetMaxCount(), new ItemStack(diaper.GetItem()).getItemHolder().getRegisteredName()));
+                                y.accept(bagOfDiapers);
+                            });
+                        })
+                        .build());
 
         Diapers.initialize();
     }

@@ -9,8 +9,8 @@ public enum DiaperFamilies implements StringRepresentable {
     BUNNYHOPPS("bunnyhopps"),
     MEDICAL("medical"),
     MEGAMAX("mega"),
-    PULLUPS("pullup", 12),
-    CHEAP("cheap", 20);
+    PULLUPS("pullup"),
+    CHEAP("cheap");
 
     DiaperFamilies(String s){
         name = s; max_per_bag = 10;
@@ -26,4 +26,5 @@ public enum DiaperFamilies implements StringRepresentable {
     public @NotNull String getSerializedName() {
         return name;
     }
+    public int GetMaxCount() { return max_per_bag; }
 }
