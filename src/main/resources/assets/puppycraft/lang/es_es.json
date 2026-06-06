@@ -1,21 +1,18 @@
 {
-  "effect.diaperpants.full": "Full",
+  "effect.diaperpants.full": "pañal completo",
 
-  "trinkets.slot.legs.diaper": "Diaper",
-  "trinkets.slot.head.mouth": "Mouth",
+  "itemgroup.puppycraft.diapers": "Pañales",
 
-  "itemgroup.puppycraft.diapers": "Diapers",
-
-  "item.puppycraft.cheapdiaper": "Paper Diaper",
-  "item.puppycraft.medicaldiaper": "Diaper",
-  "item.puppycraft.megamaxdiaper": "Megamax Diaper",
-  "item.puppycraft.subspacediaper": "Subspace Diaper",
-  "item.puppycraft.pullupdiaper": "Pullup Diaper",
-  "item.puppycraft.bunnyhoppsdiaper": "BunnyHopps Diaper",
+  "item.puppycraft.cheapdiaper": "Pañal de papel",
+  "item.puppycraft.medicaldiaper": "Pañal",
+  "item.puppycraft.megamaxdiaper": "Pañal Megamax",
+  "item.puppycraft.subspacediaper": "Pañal Subspace",
+  "item.puppycraft.pullupdiaper": "Tire del Pañal",
+  "item.puppycraft.bunnyhoppsdiaper": "Pañal BunnyHopps",
 
   "item.puppycraft.quesadilla": "Quesadilla",
 
-  "item.puppycraft.diapersap": "Super Absorbent Polymer",
+  "item.puppycraft.diapersap": "Polímero súper absorbente",
   "item.puppycraft.diapercore": "Heavy Duty Diaper Core",
   "item.puppycraft.cheapdiapercore": "Absorbent Diaper Core",
   "item.puppycraft.cheapdiapersap": "Absorbent Polymer",
@@ -41,10 +38,10 @@
 
   "puppycraft.diaperassembler.storagename": "Diaper Assembler Machine",
 
-  "stat.minecraft.bedwetter": "Times peed the bed",
-  "stat.minecraft.bladderfailstat": "Times peed pants",
-  "stat.minecraft.poopedpants": "Times pooped pants",
-  "stat.minecraft.saggingdiaper": "Time spent in full diapers",
+  "stat.minecraft.bedwetter": "Los tiempos orinaron en la cama",
+  "stat.minecraft.bladderfailstat": "Pantalones Times Peed",
+  "stat.minecraft.poopedpants": "El tiempo hizo caca en los pantalones",
+  "stat.minecraft.saggingdiaper": "Tiempo pasado con el pañal lleno puesto",
 
-  "puppycraft.diaper_soiling": "Pooping Pants"
+  "puppycraft.diaper_soiling": "Pantalones sucios"
 }
