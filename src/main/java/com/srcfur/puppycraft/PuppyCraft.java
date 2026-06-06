@@ -32,9 +32,12 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.CuriosCapability;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurio;
+import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
+import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 
 import java.util.List;
 import java.util.Optional;
@@ -166,6 +169,18 @@ public class PuppyCraft {
     }
 
     public static Optional<ItemStack> getDiaperOnPlayer(Player player){
+        Optional<ICuriosItemHandler> inventory = CuriosApi.getCuriosInventory(player);
+        if(inventory.isPresent()){
+            if(inventory.get().getStacksHandler("underwear").isPresent()){
+                ICurioStacksHandler stack = inventory.get().getStacksHandler("underwear").get();
+                if(!stack.getStacks().getStackInSlot(0).isEmpty()){
+                    ItemStack undies = stack.getStacks().getStackInSlot(0);
+                    if(undies.getItem().getClass() == DiaperItem.class){
+                        return Optional.of(undies);
+                    }
+                }
+            }
+        }
         return Optional.empty();
     }
 
