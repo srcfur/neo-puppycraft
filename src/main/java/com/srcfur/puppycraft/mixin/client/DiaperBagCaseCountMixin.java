@@ -3,6 +3,7 @@ package com.srcfur.puppycraft.mixin.client;
 import com.srcfur.puppycraft.PuppyCraft;
 import com.srcfur.puppycraft.diapers.DiaperCodecs;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -10,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import javax.annotation.Nullable;
-/*
+
 @Mixin(GuiGraphics.class)
 public abstract class DiaperBagCaseCountMixin {
 
@@ -26,4 +27,3 @@ public abstract class DiaperBagCaseCountMixin {
         }
     }
 }
-*/

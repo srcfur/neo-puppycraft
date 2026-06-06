@@ -2,10 +2,7 @@ package com.srcfur.puppycraft;
 
 import com.srcfur.badhygiene.BadHygiene;
 import com.srcfur.badhygiene.api.HygieneAPI;
-import com.srcfur.puppycraft.diapers.DiaperCodecs;
-import com.srcfur.puppycraft.diapers.DiaperItem;
-import com.srcfur.puppycraft.diapers.DiaperStackData;
-import com.srcfur.puppycraft.diapers.Diapers;
+import com.srcfur.puppycraft.diapers.*;
 import com.srcfur.puppycraft.diapers.diaperbag.DiaperBagBlock;
 import com.srcfur.puppycraft.diapers.diaperbag.DiaperBagEntity;
 import com.srcfur.puppycraft.diapers.diaperbag.DiaperBagItem;
@@ -17,6 +14,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.fml.ModList;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.registries.*;
 import org.slf4j.Logger;
 
@@ -33,7 +31,11 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import top.theillusivec4.curios.api.CuriosCapability;
+import top.theillusivec4.curios.api.SlotContext;
+import top.theillusivec4.curios.api.type.capability.ICurio;
 
+import java.util.List;
 import java.util.Optional;
 
 import static com.srcfur.puppycraft.diapers.Diapers.SOILING_NOISE;
@@ -93,6 +95,7 @@ public class PuppyCraft {
         NeoForge.EVENT_BUS.register(this);
         modEventBus.addListener(Diapers::register);
         modEventBus.addListener(PuppyCraft::registerRegistries);
+        modEventBus.addListener(PuppyCraft::registerCapabilities);
 
         DiaperCodecs.Initialize();
 
@@ -155,5 +158,21 @@ public class PuppyCraft {
     public void onServerStarting(ServerStartingEvent event) {
         // Do something when the server starts
         LOGGER.info("HELLO from server starting");
+    }
+
+    public static void registerCapabilities(final RegisterCapabilitiesEvent evt) {
+        List<DiaperData> diaperdata = Diapers.DIAPER_REGISTRY.stream().toList();
+        for(int i = 0; i < diaperdata.size(); i++){
+            evt.registerItem(
+                    CuriosCapability.ITEM,
+                    (stack, context) -> new ICurio() {
+                        @Override
+                        public ItemStack getStack(){
+                            return stack;
+                        }
+                    },
+                    diaperdata.get(i).GetItem()
+            );
+        }
     }
 }

@@ -3,6 +3,7 @@
   "package": "com.srcfur.puppycraft.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "client.DiaperBagCaseCountMixin"
   ],
   "injectors": {
     "defaultRequire": 1

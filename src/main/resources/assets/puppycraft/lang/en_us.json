@@ -22,15 +22,18 @@
 
   "item.puppycraft.pacifier": "Pacifier",
 
+  "item.puppycraft.diaperbag.generic": "Empty diaper bag",
+  "item.puppycraft.diaperbag.phighting": "Bag de Phighting Panales",
+  "item.puppycraft.diaperbag.bunnyhopps": "Bag o' Bunnyhopps",
+  "item.puppycraft.diaperbag.medical": "Bag o' diapers",
+  "item.puppycraft.diaperbag.mega": "Bag o' MegaMaxes",
+  "item.puppycraft.diaperbag.pullup": "Package of Pull-Ups",
+  "item.puppycraft.diaperbag.cheap": "Bag of cheap diapers",
+
   "block.puppycraft.puppy_pastel_blue": "Cloudy Wallpaper",
   "block.puppycraft.puppy_pastel_pink": "Lovely Wallpaper",
   "block.puppycraft.diaperassembler": "Diaper Press",
 
-
-  "block.puppycraft.diaper_bag": "Empty Diaper Bag",
-  "block.puppycraft.diaper_bag.pullupdiaper": "Bag of Pull Ups",
-  "block.puppycraft.diaper_bag.medicaldiaper": "Bag of Medical Diapers",
-  "block.puppycraft.diaper_bag": "Empty Diaper Bag",
   "block.puppycraft.diaper_bag": "Empty Diaper Bag",
 
   "puppycraft.diaperassembler.storagename": "Diaper Assembler Machine",

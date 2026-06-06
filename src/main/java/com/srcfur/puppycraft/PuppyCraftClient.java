@@ -1,9 +1,6 @@
 package com.srcfur.puppycraft;
 
-import com.srcfur.puppycraft.diapers.DiaperData;
-import com.srcfur.puppycraft.diapers.DiaperRegistrationEvent;
-import com.srcfur.puppycraft.diapers.DiaperRenderer;
-import com.srcfur.puppycraft.diapers.Diapers;
+import com.srcfur.puppycraft.diapers.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.neoforged.api.distmarker.Dist;
@@ -14,6 +11,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
+import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
 
 // This class will not load on dedicated servers. Accessing client side code from here is safe.
 @Mod(value = PuppyCraft.MODID, dist = Dist.CLIENT)
@@ -31,7 +29,9 @@ public class PuppyCraftClient {
     @SuppressWarnings("removal")
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
-        PuppyCraft.LOGGER.info("[Diaper Register] Diapers Found: ".concat(Long.toString(Diapers.DIAPER_REGISTRY.stream().count())));
+        Diapers.DIAPER_REGISTRY.stream().forEach(diaperData -> {
+            CuriosRendererRegistry.register(diaperData.GetItem(), CurioDiaperRenderer::new);
+        });
     }
 
 }

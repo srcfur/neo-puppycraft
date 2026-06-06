@@ -20,6 +20,8 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.registries.*;
 import net.neoforged.neoforge.registries.callback.AddCallback;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.CuriosCapability;
 
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -47,9 +49,12 @@ public class Diapers {
         RegisterDiaper(event, ResourceLocation.fromNamespaceAndPath(PuppyCraft.MODID, "subspacediaper"), ResourceLocation.fromNamespaceAndPath(PuppyCraft.MODID, "textures/models/armor/diapers/subspace"), DiaperFamilies.PHIGHTING);
     }
     public static void RegisterDiaper(RegisterEvent event, ResourceLocation location, ResourceLocation texture, DiaperFamilies family){
+
         event.register(BuiltInRegistries.ITEM.key(), registry -> {
-            registry.register(location, new DiaperItem(new Item.Properties().stacksTo(1)
-                    .component(DiaperCodecs.DIAPER_DATA_COMPONENT.value(), new DiaperStackData(0)), texture, family));
+            DiaperItem item = new DiaperItem(new Item.Properties().stacksTo(1)
+                    .component(DiaperCodecs.DIAPER_DATA_COMPONENT.value(), new DiaperStackData(0)), texture, family);
+            registry.register(location, item);
+            CuriosApi.registerCurio(item, item);
         });
         event.register(DIAPER_REGISTRY_KEY, diaper -> {
             diaper.register(location, new DiaperData(location));
