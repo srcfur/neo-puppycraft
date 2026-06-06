@@ -88,6 +88,13 @@ versionRange="[${geckolib_version},)"
 ordering="BEFORE"
 side="BOTH"
 
+[[dependencies.${mod_id}]]
+modId="curios"
+type="required"
+versionRange="[${curios_version},)"
+ordering="BEFORE"
+side="BOTH"
+
 # Here's another dependency
 [[dependencies.${mod_id}]]
     modId="minecraft"
