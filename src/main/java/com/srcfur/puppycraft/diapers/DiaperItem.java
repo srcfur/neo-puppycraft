@@ -22,25 +22,20 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import java.awt.*;
 import java.util.function.Consumer;
 
-public class DiaperItem extends ArmorItem implements GeoItem, ICurioItem, GeoRenderProvider {
+public class DiaperItem extends Item implements GeoItem, ICurioItem, GeoRenderProvider {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     public ResourceLocation DIAPER_TEXTURE;
     public static final String USAGE_TAG = "urine";
     public DiaperFamilies family;
     public DiaperItem(Properties properties, ResourceLocation texture, DiaperFamilies family){
-        super(ArmorMaterials.IRON, Type.LEGGINGS, properties);
+        super(properties);
         DIAPER_TEXTURE = texture;
         this.family = family;
     }
 
     @Override
-    public int getMaxDamage(ItemStack stack) {
-        return 100;
-    }
-
-    @Override
     public boolean isBarVisible(ItemStack stack) {
-        return false;
+        return getDamage(stack) > 0;
     }
 
     @Override
@@ -48,6 +43,10 @@ public class DiaperItem extends ArmorItem implements GeoItem, ICurioItem, GeoRen
 
     }
 
+    @Override
+    public int getDamage(ItemStack stack) {
+        return stack.getOrDefault(DiaperCodecs.DIAPER_DATA_COMPONENT, new DiaperStackData(0)).urine();
+    }
 
     @Override
     public void createGeoRenderer(Consumer<GeoRenderProvider> consumer) {

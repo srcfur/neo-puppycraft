@@ -40,7 +40,7 @@ public class DiaperRenderer extends GeoArmorRenderer<DiaperItem> {
     @Override
     protected void setAllBonesVisible(boolean visible) {
         super.setAllBonesVisible(true);
-        int soil_version =  (int)(1 - ((float)currentStack.getDamageValue() / (float)currentStack.getMaxDamage()) * 4);
+        int soil_version =  (int)(((float)currentStack.getDamageValue() / (float)currentStack.getMaxDamage()) * 4);
         for(int i = 0; i < 4; i++){
             if(i >= soil_version){
                 var bone = model.getBone("soiling" + i);

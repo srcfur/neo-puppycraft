@@ -41,17 +41,17 @@ public class Diapers {
         event.register(DIAPER_REGISTRY);
     }
     public static void register(RegisterEvent event) {
-        RegisterDiaper(event, ResourceLocation.fromNamespaceAndPath(PuppyCraft.MODID, "cheapdiaper"), ResourceLocation.fromNamespaceAndPath(PuppyCraft.MODID, "textures/models/armor/diapers/cheap"), DiaperFamilies.CHEAP);
-        RegisterDiaper(event, ResourceLocation.fromNamespaceAndPath(PuppyCraft.MODID, "bunnyhoppsdiaper"), ResourceLocation.fromNamespaceAndPath(PuppyCraft.MODID, "textures/models/armor/diapers/bunnyhopps"), DiaperFamilies.BUNNYHOPPS);
-        RegisterDiaper(event, ResourceLocation.fromNamespaceAndPath(PuppyCraft.MODID, "medicaldiaper"), ResourceLocation.fromNamespaceAndPath(PuppyCraft.MODID, "textures/models/armor/diapers/medical"), DiaperFamilies.MEDICAL);
-        RegisterDiaper(event, ResourceLocation.fromNamespaceAndPath(PuppyCraft.MODID, "megamaxdiaper"), ResourceLocation.fromNamespaceAndPath(PuppyCraft.MODID, "textures/models/armor/diapers/mega"), DiaperFamilies.MEGAMAX);
-        RegisterDiaper(event, ResourceLocation.fromNamespaceAndPath(PuppyCraft.MODID, "pullupdiaper"), ResourceLocation.fromNamespaceAndPath(PuppyCraft.MODID, "textures/models/armor/diapers/pullup"), DiaperFamilies.PULLUPS);
-        RegisterDiaper(event, ResourceLocation.fromNamespaceAndPath(PuppyCraft.MODID, "subspacediaper"), ResourceLocation.fromNamespaceAndPath(PuppyCraft.MODID, "textures/models/armor/diapers/subspace"), DiaperFamilies.PHIGHTING);
+        RegisterDiaper(event, ResourceLocation.fromNamespaceAndPath(PuppyCraft.MODID, "cheapdiaper"), ResourceLocation.fromNamespaceAndPath(PuppyCraft.MODID, "textures/models/armor/diapers/cheap"), DiaperFamilies.CHEAP, 120);
+        RegisterDiaper(event, ResourceLocation.fromNamespaceAndPath(PuppyCraft.MODID, "bunnyhoppsdiaper"), ResourceLocation.fromNamespaceAndPath(PuppyCraft.MODID, "textures/models/armor/diapers/bunnyhopps"), DiaperFamilies.BUNNYHOPPS, 300);
+        RegisterDiaper(event, ResourceLocation.fromNamespaceAndPath(PuppyCraft.MODID, "medicaldiaper"), ResourceLocation.fromNamespaceAndPath(PuppyCraft.MODID, "textures/models/armor/diapers/medical"), DiaperFamilies.MEDICAL, 200);
+        RegisterDiaper(event, ResourceLocation.fromNamespaceAndPath(PuppyCraft.MODID, "megamaxdiaper"), ResourceLocation.fromNamespaceAndPath(PuppyCraft.MODID, "textures/models/armor/diapers/mega"), DiaperFamilies.MEGAMAX, 300);
+        RegisterDiaper(event, ResourceLocation.fromNamespaceAndPath(PuppyCraft.MODID, "pullupdiaper"), ResourceLocation.fromNamespaceAndPath(PuppyCraft.MODID, "textures/models/armor/diapers/pullup"), DiaperFamilies.PULLUPS, 150);
+        RegisterDiaper(event, ResourceLocation.fromNamespaceAndPath(PuppyCraft.MODID, "subspacediaper"), ResourceLocation.fromNamespaceAndPath(PuppyCraft.MODID, "textures/models/armor/diapers/subspace"), DiaperFamilies.PHIGHTING, 300);
     }
-    public static void RegisterDiaper(RegisterEvent event, ResourceLocation location, ResourceLocation texture, DiaperFamilies family){
+    public static void RegisterDiaper(RegisterEvent event, ResourceLocation location, ResourceLocation texture, DiaperFamilies family, int health){
 
         event.register(BuiltInRegistries.ITEM.key(), registry -> {
-            DiaperItem item = new DiaperItem(new Item.Properties().stacksTo(1)
+            DiaperItem item = new DiaperItem(new Item.Properties().stacksTo(1).durability(health)
                     .component(DiaperCodecs.DIAPER_DATA_COMPONENT.value(), new DiaperStackData(0)), texture, family);
             registry.register(location, item);
             CuriosApi.registerCurio(item, item);
