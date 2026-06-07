@@ -15,6 +15,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.fml.ModList;
+import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.registries.*;
 import org.slf4j.Logger;
@@ -221,5 +222,10 @@ public class PuppyCraft {
                     diaperdata.get(i).GetItem()
             );
         }
+        evt.registerBlock(
+                Capabilities.ItemHandler.BLOCK,
+                (level, pos, state, be, side) -> (DiaperBagEntity)level.getBlockEntity(pos),
+                DIAPER_BAG_BLOCK.get()
+        );
     }
 }
