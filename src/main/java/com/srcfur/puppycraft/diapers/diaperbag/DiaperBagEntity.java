@@ -13,6 +13,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -92,15 +93,18 @@ public class DiaperBagEntity extends BlockEntity implements IItemHandler {
 
     @Override
     public ItemStack extractItem(int i, int amount, boolean b) {
+        if(diapersheld == 0){
+            return ItemStack.EMPTY;
+        }
         if(!b){
             return getDiaper();
         }
-        return diapers.get(diapersheld);
+        return diapers.get(diapersheld - 1);
     }
 
     @Override
     public int getSlotLimit(int i) {
-        return 10;
+        return 1;
     }
 
     @Override
@@ -139,6 +143,13 @@ public class DiaperBagEntity extends BlockEntity implements IItemHandler {
         if(!diapers.get(0).isEmpty()){
             getLevel().setBlockAndUpdate(getBlockPos(), getBlockState().setValue(DiaperBagBlock.FAMILY, ((DiaperItem)diapers.get(0).getItem()).family));
         }
+    }
+
+    public ItemStack asItemStack(){
+        ItemStack diaperbag = new ItemStack(PuppyCraft.DIAPER_BAG_ITEM.value());
+        diaperbag.setCount(1);
+        diaperbag.set(DiaperCodecs.DIAPER_BAG_COMPONENT, new DiaperBagData(diapersheld, diapers.get(0).getItemHolder().getRegisteredName()));
+        return diaperbag;
     }
 
     /*
