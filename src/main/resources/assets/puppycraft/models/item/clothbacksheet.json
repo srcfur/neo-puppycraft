@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "puppycraft:item/clothbacksheet"
+    "layer0": "puppycraft:item/diapersheet"
   }
 }
