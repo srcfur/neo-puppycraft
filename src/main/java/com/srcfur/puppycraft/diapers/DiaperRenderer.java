@@ -10,6 +10,9 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Matrix4f;
@@ -46,14 +49,6 @@ public class DiaperRenderer extends GeoArmorRenderer<DiaperItem> {
                 var bone = model.getBone("soiling" + i);
                 bone.ifPresent(geoBone -> setBoneVisible(geoBone, false));
             }
-        }
-    }
-
-    @Override
-    public void preRender(PoseStack poseStack, DiaperItem animatable, BakedGeoModel model, @Nullable MultiBufferSource bufferSource, @Nullable VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, int colour) {
-        super.preRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, colour);
-        if (!(this.currentEntity instanceof GeoAnimatable)) {
-
         }
     }
 }
