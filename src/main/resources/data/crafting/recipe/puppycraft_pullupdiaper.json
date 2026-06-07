@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    " D ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:paper"
+    },
+    "D": {
+      "item": "puppycraft:diapercore"
+    }
+  },
+  "result": {
+    "id": "puppycraft:pullupdiaper"
+  }
+}

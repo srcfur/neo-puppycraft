@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#C#",
+    "DdD",
+    "#C#"
+  ],
+  "key": {
+    "#": {
+      "item": "puppycraft:clothbacksheet"
+    },
+    "C": {
+      "item": "puppycraft:cheapdiapersap"
+    },
+    "D": {
+      "item": "puppycraft:diapercore"
+    },
+    "d": {
+      "item": "puppycraft:diapersap"
+    }
+  },
+  "result": {
+    "id": "puppycraft:threediapercore"
+  }
+}

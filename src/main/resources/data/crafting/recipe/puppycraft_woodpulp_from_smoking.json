@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smoking",
+  "experience": 0,
+  "cookingtime": 100,
+  "ingredient": {
+    "tag": "minecraft:logs"
+  },
+  "result": {
+    "id": "puppycraft:woodpulp"
+  }
+}

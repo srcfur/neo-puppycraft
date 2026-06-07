@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#W#",
+    "#C#",
+    "#W#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:paper"
+    },
+    "W": {
+      "item": "puppycraft:woodpulp"
+    },
+    "C": {
+      "item": "puppycraft:cheapdiapersap"
+    }
+  },
+  "result": {
+    "id": "puppycraft:cheapdiapercore"
+  }
+}

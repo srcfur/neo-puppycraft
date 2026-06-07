@@ -160,8 +160,8 @@ public class PuppyCraft {
                             });
                         })
                         .build());
-
         Diapers.initialize();
+        PuppyCraftItems.Initialize();
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
@@ -186,8 +186,13 @@ public class PuppyCraft {
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
-
+        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(PuppyCraftItems.WOOD_PULP);
+            event.accept(PuppyCraftItems.CHEAP_ABSORBENT_POLYMER);
+            event.accept(PuppyCraftItems.SUPER_ABSORBENT_POLYMER);
+            event.accept(PuppyCraftItems.CHEAP_DIAPER_CORE);
+            event.accept(PuppyCraftItems.NORMAL_DIAPER_CORE);
+            event.accept(PuppyCraftItems.PREMIUM_DIAPER_CORE);
         }
     }
 
