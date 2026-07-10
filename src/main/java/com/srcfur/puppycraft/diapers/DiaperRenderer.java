@@ -37,18 +37,22 @@ public class DiaperRenderer extends GeoArmorRenderer<DiaperItem> {
 
     @Override
     public ResourceLocation getTextureLocation(DiaperItem animatable) {
-        return ResourceLocation.fromNamespaceAndPath(animatable.DIAPER_TEXTURE.getNamespace(), animatable.DIAPER_TEXTURE.getPath() + "0.png");
+        return ResourceLocation.fromNamespaceAndPath(animatable.DIAPER_TEXTURE.getNamespace(), animatable.DIAPER_TEXTURE.getPath() + ((int)(getPercentageFilled() * 5)) + ".png");
     }
 
     @Override
     protected void setAllBonesVisible(boolean visible) {
         super.setAllBonesVisible(true);
-        int soil_version =  (int)(((float)currentStack.getDamageValue() / (float)currentStack.getMaxDamage()) * 4);
+        int soil_version =  (int)(getPercentageFilled() * 4);
         for(int i = 0; i < 4; i++){
-            if(i >= soil_version){
+            if(i > soil_version){
                 var bone = model.getBone("soiling" + i);
                 bone.ifPresent(geoBone -> setBoneVisible(geoBone, false));
             }
         }
+    }
+
+    protected float getPercentageFilled(){
+        return (float)currentStack.getOrDefault(DiaperCodecs.DIAPER_DATA_COMPONENT, new DiaperStackData(0)).urine() / (float)currentStack.getMaxDamage();
     }
 }

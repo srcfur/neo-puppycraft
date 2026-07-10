@@ -1,11 +1,13 @@
 package com.srcfur.puppycraft.diapers;
 
+import com.srcfur.puppycraft.PuppyCraft;
 import com.srcfur.puppycraft.diapers.diaperbag.DiaperFamilies;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.Item;
@@ -17,6 +19,7 @@ import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.AnimatableManager;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.awt.*;
@@ -68,4 +71,8 @@ public class DiaperItem extends Item implements GeoItem, ICurioItem, GeoRenderPr
         return this.cache;
     }
 
+    @Override
+    public boolean canEquipFromUse(SlotContext slotContext, ItemStack stack) {
+        return PuppyCraft.getDiaperOnPlayer((Player) slotContext.entity()).isEmpty();
+    }
 }
