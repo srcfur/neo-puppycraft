@@ -48,5 +48,7 @@
   "stat.minecraft.poopedpants": "Times pooped pants",
   "stat.minecraft.saggingdiaper": "Time spent in full diapers",
 
-  "puppycraft.diaper_soiling": "Pooping Pants"
+  "puppycraft.diaper_soiling": "Pooping Pants",
+
+  "puppycraft.configuration.urinemeter": "Legacy Urine Bar"
 }
