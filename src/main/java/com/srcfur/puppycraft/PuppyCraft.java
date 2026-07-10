@@ -116,9 +116,7 @@ public class PuppyCraft {
             return false;
         });
 
-        //HygieneAPI.event_player_pee_puddle.add(player -> {
-        //    return player.getInBlockState().getBlock() == PUPPY_PAD_BLOCK.get();
-        //});
+        HygieneAPI.registerPeePuddleEvent(player -> player.getInBlockState().getBlock() == PUPPY_PAD_BLOCK.get());
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
