@@ -148,7 +148,7 @@ public class PuppyCraft {
                             if(data == null){
                                 return ItemStack.EMPTY;
                             }
-                            return new ItemStack(data.GetItem(), 0);
+                            return new ItemStack(data.GetItem(), 1);
                 })
                         .displayItems((x,y) -> {
                             Diapers.DIAPER_REGISTRY.stream().forEach(diaper ->{
