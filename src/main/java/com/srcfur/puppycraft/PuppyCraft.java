@@ -2,6 +2,7 @@ package com.srcfur.puppycraft;
 
 import com.srcfur.badhygiene.BadHygiene;
 import com.srcfur.badhygiene.api.HygieneAPI;
+import com.srcfur.badhygiene.events.PlayerUsedToiletEvent;
 import com.srcfur.puppycraft.diapers.*;
 import com.srcfur.puppycraft.diapers.diaperbag.DiaperBagBlock;
 import com.srcfur.puppycraft.diapers.diaperbag.DiaperBagEntity;
@@ -115,7 +116,7 @@ public class PuppyCraft {
                 player.playSound(SOILING_NOISE.value());
                 return absorbency >= HygieneAPI.getBladderLevel(player);
             }
-            HygieneAPI.setContinence(player, Math.max(HygieneAPI.getContinence(player), HygieneAPI.getContinence(player) + ACCIDENT_CONTINENCE_PUNISHMENT));
+            HygieneAPI.setContinence(player, Math.max(MINIMUM_CONTINENCE_LEVEL, HygieneAPI.getContinence(player) + ACCIDENT_CONTINENCE_PUNISHMENT));
             return false;
         });
 
@@ -124,6 +125,7 @@ public class PuppyCraft {
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
         NeoForge.EVENT_BUS.addListener(PuppyPadBlock::ServerTick);
+        NeoForge.EVENT_BUS.addListener(PuppyCraft::onPlayerUsedPotty);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
@@ -170,6 +172,12 @@ public class PuppyCraft {
 
     private void commonSetup(FMLCommonSetupEvent event) {
 
+    }
+
+    public static void onPlayerUsedPotty(PlayerUsedToiletEvent event){
+        if(HygieneAPI.getBladderLevel(event.player) == 0){
+            HygieneAPI.setContinence(event.player, Math.min(HygieneAPI.getContinence(event.player) + 5, MAXIMUM_CONTINENCE_LEVEL));
+        }
     }
 
     public static Optional<ItemStack> getDiaperOnPlayer(Player player){

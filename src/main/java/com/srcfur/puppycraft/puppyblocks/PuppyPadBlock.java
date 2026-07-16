@@ -1,6 +1,7 @@
 package com.srcfur.puppycraft.puppyblocks;
 
 import com.srcfur.badhygiene.api.HygieneAPI;
+import com.srcfur.badhygiene.attributes.HygieneAttributes;
 import com.srcfur.puppycraft.PuppyCraft;
 import joptsimple.util.KeyValuePair;
 import net.minecraft.core.BlockPos;
@@ -10,6 +11,9 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.players.PlayerList;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -54,6 +58,8 @@ public class PuppyPadBlock extends CarpetBlock {
             if(pos.distSqr(player.blockPosition()) < 1){
                 urinateOnPad(pos, level);
                 HygieneAPI.setBladderLevel(player, 0);
+                HygieneAPI.setContinence(player, Math.min(HygieneAPI.getContinence(player) + 3, PuppyCraft.MAXIMUM_CONTINENCE_LEVEL));
+                player.addEffect(new MobEffectInstance(HygieneAttributes.INCONTINENCE_EFFECT, 6000, 0));
                 return InteractionResult.CONSUME;
             }
             else
@@ -146,7 +152,7 @@ public class PuppyPadBlock extends CarpetBlock {
         for(int i = 0; i < players.getPlayerCount(); i++){
             ServerPlayer plr = players.getPlayers().get(i);
             if(plr.getInBlockState().getBlock() == PuppyCraft.PUPPY_PAD_BLOCK.get()){
-                int roll = plr.getRandom().nextInt(plr.getInBlockState().getValue(USESTATE).ordinal() * 10);
+                int roll = plr.getRandom().nextInt(plr.getInBlockState().getValue(USESTATE).ordinal() * 10 + 1);
                 //basically 1 / 10 ticks if soaked pad
                 if(roll > 28){
                     HygieneAPI.impactCleanliness(plr, 1);
