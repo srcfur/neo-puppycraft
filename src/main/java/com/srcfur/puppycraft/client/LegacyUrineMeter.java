@@ -20,9 +20,9 @@ public class LegacyUrineMeter {
         Player plr = Minecraft.getInstance().player;
 
         if( plr != null && Config.LEGACY_URINE_METER.getAsBoolean()){
-            float fullness = HygieneAPI.getBladderFullness(plr) / 100f;
+            float fullness = HygieneAPI.getBladderFullness(plr);
             for (int i = 0; i < 10; i++){
-                graphics.blitSprite(i / 10f < fullness ? FullUrine : EmptyUrine, xoffset + spacing * i, yoffset, 12, 12);
+                graphics.blitSprite(i * 10f < fullness ? FullUrine : EmptyUrine, xoffset + spacing * i, yoffset, 12, 12);
             }
         }
     }
