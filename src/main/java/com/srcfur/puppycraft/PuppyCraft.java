@@ -48,6 +48,8 @@ import static com.srcfur.puppycraft.diapers.Diapers.SOILING_NOISE;
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(PuppyCraft.MODID)
 public class PuppyCraft {
+    public static final Boolean DEVELOPMENT_BUILD = true;
+
     // Define mod id in a common place for everything to reference
     public static final String MODID = "puppycraft";
     // Directly reference a slf4j logger
@@ -66,6 +68,7 @@ public class PuppyCraft {
     public static DeferredBlock<PuppyPadBlock> PUPPY_PAD_BLOCK;
     public static DeferredHolder<BlockEntityType<?>, BlockEntityType<DiaperBagEntity>> DIAPER_BAG_ENTITY;
     public static DeferredItem<BlockItem> DIAPER_BAG_ITEM;
+    public static DeferredItem<BlockItem> PUPPY_PAD_ITEM;
 
     public static final int MINIMUM_CONTINENCE_LEVEL = 30;
     public static final int ACCIDENT_CONTINENCE_PUNISHMENT = -7;
@@ -120,6 +123,7 @@ public class PuppyCraft {
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
+        NeoForge.EVENT_BUS.addListener(PuppyPadBlock::ServerTick);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
@@ -135,8 +139,8 @@ public class PuppyCraft {
                         ).build(null));
         DIAPER_BAG_ITEM = ITEMS.register("diaper_bag", ()-> new DiaperBagItem(DIAPER_BAG_BLOCK.value(), new Item.Properties().stacksTo(1)));
 
-        PUPPY_PAD_BLOCK = BLOCKS.register("puppy_pad", ()-> new PuppyPadBlock(BlockBehaviour.Properties.of().noOcclusion()));
-        ITEMS.register("puppy_pad", ()->new BlockItem(PUPPY_PAD_BLOCK.value(), new Item.Properties()));
+        PUPPY_PAD_BLOCK = BLOCKS.register("puppy_pad", ()-> new PuppyPadBlock(BlockBehaviour.Properties.of().noOcclusion().randomTicks()));
+        PUPPY_PAD_ITEM = ITEMS.register("puppy_pad", ()->new BlockItem(PUPPY_PAD_BLOCK.value(), new Item.Properties()));
 
         CREATIVE_MODE_TABS.register(PuppyCraft.MODID,
                 ()-> CreativeModeTab.builder()
@@ -157,6 +161,7 @@ public class PuppyCraft {
                                 bagOfDiapers.set(DiaperCodecs.DIAPER_BAG_COMPONENT, new DiaperBagData(diaper.GetItem().family.GetMaxCount(), new ItemStack(diaper.GetItem()).getItemHolder().getRegisteredName()));
                                 y.accept(bagOfDiapers);
                             });
+                            y.accept(PUPPY_PAD_ITEM);
                         })
                         .build());
         Diapers.initialize();

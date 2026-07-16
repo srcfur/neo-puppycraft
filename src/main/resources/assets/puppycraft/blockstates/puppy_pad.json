@@ -12,6 +12,22 @@
       "when": {
         "pad_usage": "light"
       }
+    },
+    {
+      "apply": {
+        "model": "puppycraft:block/puppypad_urine_wet"
+      },
+      "when": {
+        "pad_usage": "wet"
+      }
+    },
+    {
+      "apply": {
+        "model": "puppycraft:block/puppypad_urine_soaked"
+      },
+      "when": {
+        "pad_usage": "soaked"
+      }
     }
   ]
 }

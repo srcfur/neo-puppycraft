@@ -50,5 +50,8 @@
 
   "puppycraft.diaper_soiling": "Pooping Pants",
 
-  "puppycraft.configuration.urinemeter": "Legacy Urine Bar"
+  "puppycraft.configuration.urinemeter": "Legacy Urine Bar",
+  "puppycraft.puppy_pad.tooltip.joining": "Place pads next to eachother to spread it's use!",
+  "puppycraft.puppy_pad.tooltip.interaction": "Crouch and use to use puppy pad",
+  "puppycraft.puppy_pad.out_of_reach": "Can only use puppy pad when standing on top of it."
 }
