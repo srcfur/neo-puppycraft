@@ -2,6 +2,7 @@ package com.srcfur.puppycraft.diapers.diaperbag;
 
 import com.mojang.serialization.MapCodec;
 import com.srcfur.puppycraft.PuppyCraft;
+import com.srcfur.puppycraft.blocks.entities.PuppyCraftBlockEntities;
 import com.srcfur.puppycraft.diapers.DiaperBagData;
 import com.srcfur.puppycraft.diapers.DiaperCodecs;
 import com.srcfur.puppycraft.diapers.DiaperItem;
@@ -59,7 +60,7 @@ public class DiaperBagBlock extends BaseEntityBlock {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new DiaperBagEntity(PuppyCraft.DIAPER_BAG_ENTITY.value(), blockPos, blockState);
+        return new DiaperBagEntity(PuppyCraftBlockEntities.DIAPER_BAG_ENTITY.value(), blockPos, blockState);
     }
 
     @Override

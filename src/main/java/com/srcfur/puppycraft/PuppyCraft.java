@@ -1,15 +1,14 @@
 package com.srcfur.puppycraft;
 
-import com.srcfur.badhygiene.BadHygiene;
 import com.srcfur.badhygiene.api.HygieneAPI;
 import com.srcfur.badhygiene.events.PlayerUsedToiletEvent;
+import com.srcfur.puppycraft.blocks.PuppyCraftBlocks;
 import com.srcfur.puppycraft.diapers.*;
-import com.srcfur.puppycraft.diapers.diaperbag.DiaperBagBlock;
 import com.srcfur.puppycraft.diapers.diaperbag.DiaperBagEntity;
 import com.srcfur.puppycraft.diapers.diaperbag.DiaperBagItem;
+import com.srcfur.puppycraft.items.PuppyCraftItems;
 import com.srcfur.puppycraft.puppyblocks.PuppyPadBlock;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
@@ -24,7 +23,6 @@ import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 
 import net.minecraft.core.registries.Registries;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
@@ -36,7 +34,6 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.CuriosCapability;
-import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
@@ -55,21 +52,11 @@ public class PuppyCraft {
     public static final String MODID = "puppycraft";
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
-    // Create a Deferred Register to hold Blocks which will all be registered under the "puppycraft" namespace
-    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
-    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY  = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, MODID);
-    // Create a Deferred Register to hold Items which will all be registered under the "puppycraft" namespace
-    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
+
     // Create a Deferred Register to hold CreativeModeTabs which will all be registered under the "puppycraft" namespace
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
     public static final DeferredRegister.DataComponents DATA_COMPONENTS = DeferredRegister.createDataComponents(Registries.DATA_COMPONENT_TYPE, MODID);
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(Registries.SOUND_EVENT, MODID);
-
-    public static DeferredBlock<DiaperBagBlock> DIAPER_BAG_BLOCK;
-    public static DeferredBlock<PuppyPadBlock> PUPPY_PAD_BLOCK;
-    public static DeferredHolder<BlockEntityType<?>, BlockEntityType<DiaperBagEntity>> DIAPER_BAG_ENTITY;
-    public static DeferredItem<BlockItem> DIAPER_BAG_ITEM;
-    public static DeferredItem<BlockItem> PUPPY_PAD_ITEM;
 
     public static final int MINIMUM_CONTINENCE_LEVEL = 30;
     public static final int ACCIDENT_CONTINENCE_PUNISHMENT = -7;
@@ -87,11 +74,7 @@ public class PuppyCraft {
         }
 
         // Register the Deferred Register to the mod event bus so blocks get registered
-        BLOCKS.register(modEventBus);
-        BLOCK_ENTITY.register(modEventBus);
         SOUND_EVENTS.register(modEventBus);
-        // Register the Deferred Register to the mod event bus so items get registered
-        ITEMS.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered
         CREATIVE_MODE_TABS.register(modEventBus);
         DATA_COMPONENTS.register(modEventBus);
@@ -120,7 +103,7 @@ public class PuppyCraft {
             return false;
         });
 
-        HygieneAPI.registerPeePuddleEvent(player -> player.getInBlockState().getBlock() == PUPPY_PAD_BLOCK.get());
+        HygieneAPI.registerPeePuddleEvent(player -> player.getInBlockState().getBlock() == PuppyCraftBlocks.PUPPY_PAD_BLOCK.get());
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
@@ -131,18 +114,7 @@ public class PuppyCraft {
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 
         //Building our diaperbag here!
-        DIAPER_BAG_BLOCK =
-                BLOCKS.register("diaper_bag", () -> new DiaperBagBlock(BlockBehaviour.Properties.of().noOcclusion()));
-        DIAPER_BAG_ENTITY =
-                BLOCK_ENTITY.register("diaper_bag_entity",
-                        ()->BlockEntityType.Builder.of(
-                                DiaperBagEntity::new,
-                                DIAPER_BAG_BLOCK.value()
-                        ).build(null));
-        DIAPER_BAG_ITEM = ITEMS.register("diaper_bag", ()-> new DiaperBagItem(DIAPER_BAG_BLOCK.value(), new Item.Properties().stacksTo(1)));
 
-        PUPPY_PAD_BLOCK = BLOCKS.register("puppy_pad", ()-> new PuppyPadBlock(BlockBehaviour.Properties.of().noOcclusion().randomTicks()));
-        PUPPY_PAD_ITEM = ITEMS.register("puppy_pad", ()->new BlockItem(PUPPY_PAD_BLOCK.value(), new Item.Properties()));
 
         CREATIVE_MODE_TABS.register(PuppyCraft.MODID,
                 ()-> CreativeModeTab.builder()
@@ -159,15 +131,14 @@ public class PuppyCraft {
                                 y.accept(diaper.GetItem());
                             });
                             Diapers.DIAPER_REGISTRY.stream().forEach(diaper -> {
-                                ItemStack bagOfDiapers = new ItemStack(DIAPER_BAG_ITEM.get());
+                                ItemStack bagOfDiapers = new ItemStack(PuppyCraftItems.DIAPER_BAG_ITEM.get());
                                 bagOfDiapers.set(DiaperCodecs.DIAPER_BAG_COMPONENT, new DiaperBagData(diaper.GetItem().family.GetMaxCount(), new ItemStack(diaper.GetItem()).getItemHolder().getRegisteredName()));
                                 y.accept(bagOfDiapers);
                             });
-                            y.accept(PUPPY_PAD_ITEM);
+                            y.accept(PuppyCraftItems.PUPPY_PAD_ITEM);
                         })
                         .build());
         Diapers.initialize();
-        PuppyCraftItems.Initialize();
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
@@ -236,7 +207,7 @@ public class PuppyCraft {
         evt.registerBlock(
                 Capabilities.ItemHandler.BLOCK,
                 (level, pos, state, be, side) -> (DiaperBagEntity)level.getBlockEntity(pos),
-                DIAPER_BAG_BLOCK.get()
+                PuppyCraftBlocks.DIAPER_BAG_BLOCK.get()
         );
     }
 }

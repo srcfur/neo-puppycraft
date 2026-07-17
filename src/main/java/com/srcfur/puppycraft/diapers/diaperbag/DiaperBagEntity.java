@@ -1,9 +1,11 @@
 package com.srcfur.puppycraft.diapers.diaperbag;
 
 import com.srcfur.puppycraft.PuppyCraft;
+import com.srcfur.puppycraft.blocks.entities.PuppyCraftBlockEntities;
 import com.srcfur.puppycraft.diapers.DiaperBagData;
 import com.srcfur.puppycraft.diapers.DiaperCodecs;
 import com.srcfur.puppycraft.diapers.DiaperItem;
+import com.srcfur.puppycraft.items.PuppyCraftItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -32,7 +34,7 @@ public class DiaperBagEntity extends BlockEntity implements IItemHandler {
         }
     }
     public DiaperBagEntity(BlockPos pos, BlockState state){
-        super(PuppyCraft.DIAPER_BAG_ENTITY.value(), pos, state);
+        super(PuppyCraftBlockEntities.DIAPER_BAG_ENTITY.value(), pos, state);
         //Initialize :3
         for(int i = 0; i < 10; i++){
             diapers.add(ItemStack.EMPTY);
@@ -146,7 +148,7 @@ public class DiaperBagEntity extends BlockEntity implements IItemHandler {
     }
 
     public ItemStack asItemStack(){
-        ItemStack diaperbag = new ItemStack(PuppyCraft.DIAPER_BAG_ITEM.value());
+        ItemStack diaperbag = new ItemStack(PuppyCraftItems.DIAPER_BAG_ITEM.value());
         diaperbag.setCount(1);
         diaperbag.set(DiaperCodecs.DIAPER_BAG_COMPONENT, new DiaperBagData(diapersheld, diapers.get(0).getItemHolder().getRegisteredName()));
         return diaperbag;

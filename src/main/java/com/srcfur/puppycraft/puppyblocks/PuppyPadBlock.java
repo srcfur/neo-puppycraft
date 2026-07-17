@@ -3,6 +3,7 @@ package com.srcfur.puppycraft.puppyblocks;
 import com.srcfur.badhygiene.api.HygieneAPI;
 import com.srcfur.badhygiene.attributes.HygieneAttributes;
 import com.srcfur.puppycraft.PuppyCraft;
+import com.srcfur.puppycraft.blocks.PuppyCraftBlocks;
 import joptsimple.util.KeyValuePair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -108,7 +109,7 @@ public class PuppyPadBlock extends CarpetBlock {
         while(!toCheck.isEmpty()){
             BlockPos checkpos = toCheck.getFirst();
             toCheck.removeFirst();
-            if(level.getBlockState(checkpos).getBlock() == PuppyCraft.PUPPY_PAD_BLOCK.get() && !validPoses.contains(checkpos) && validPoses.getFirst().distSqr(checkpos) < 2.5f){
+            if(level.getBlockState(checkpos).getBlock() == PuppyCraftBlocks.PUPPY_PAD_BLOCK.get() && !validPoses.contains(checkpos) && validPoses.getFirst().distSqr(checkpos) < 2.5f){
                 validPoses.add(checkpos);
                 //Recursive part (fuck ass)
                 getConnectedPuppyPads(validPoses, checkpos, level);
@@ -151,7 +152,7 @@ public class PuppyPadBlock extends CarpetBlock {
         PlayerList players = event.getServer().getPlayerList();
         for(int i = 0; i < players.getPlayerCount(); i++){
             ServerPlayer plr = players.getPlayers().get(i);
-            if(plr.getInBlockState().getBlock() == PuppyCraft.PUPPY_PAD_BLOCK.get()){
+            if(plr.getInBlockState().getBlock() == PuppyCraftBlocks.PUPPY_PAD_BLOCK.get()){
                 int roll = plr.getRandom().nextInt(plr.getInBlockState().getValue(USESTATE).ordinal() * 10 + 1);
                 //basically 1 / 10 ticks if soaked pad
                 if(roll > 28){
