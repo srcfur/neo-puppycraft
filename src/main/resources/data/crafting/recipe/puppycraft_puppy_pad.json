@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "CCC",
+    "DDD"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:paper"
+    },
+    "C": {
+      "item": "puppycraft:cheapdiapersap"
+    },
+    "D": {
+      "item": "minecraft:dried_kelp"
+    }
+  },
+  "result": {
+    "id": "puppycraft:puppy_pad",
+    "count": 2
+  }
+}

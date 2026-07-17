@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:milk_bucket"
+    },
+    {
+      "item": "puppycraft:empty_baby_bottle"
+    }
+  ],
+  "result": {
+    "id": "puppycraft:baby_bottle_milk"
+  }
+}
