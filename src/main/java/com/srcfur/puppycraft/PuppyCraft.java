@@ -46,7 +46,7 @@ import static com.srcfur.puppycraft.diapers.Diapers.SOILING_NOISE;
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(PuppyCraft.MODID)
 public class PuppyCraft {
-    public static final Boolean DEVELOPMENT_BUILD = true;
+    public static final Boolean DEVELOPMENT_BUILD = false;
 
     // Define mod id in a common place for everything to reference
     public static final String MODID = "puppycraft";
@@ -94,10 +94,11 @@ public class PuppyCraft {
         HygieneAPI.registerWettingEvent((player)->{
             Optional<ItemStack> playerDiaper = getDiaperOnPlayer(player);
             if(playerDiaper.isPresent()){
-                int absorbency = Math.max(Math.min(playerDiaper.get().getMaxDamage() - playerDiaper.get().get(DiaperCodecs.DIAPER_DATA_COMPONENT.value()).urine(), HygieneAPI.getCalculatedContinence(player)), 0);
+                int absorbency = Math.max(Math.min(playerDiaper.get().getMaxDamage() - playerDiaper.get().get(DiaperCodecs.DIAPER_DATA_COMPONENT.value()).urine(), HygieneAPI.getBladderLevel(player)), 0);
+                boolean didcatch = playerDiaper.get().getMaxDamage() - playerDiaper.get().get(DiaperCodecs.DIAPER_DATA_COMPONENT.value()).urine() - HygieneAPI.getBladderLevel(player) >= 0;
                 playerDiaper.get().set(DiaperCodecs.DIAPER_DATA_COMPONENT.value(), new DiaperStackData(playerDiaper.get().get(DiaperCodecs.DIAPER_DATA_COMPONENT.value()).urine() + absorbency));
                 player.playSound(SOILING_NOISE.value());
-                return absorbency >= HygieneAPI.getBladderLevel(player);
+                return didcatch;
             }
             HygieneAPI.setContinence(player, Math.max(MINIMUM_CONTINENCE_LEVEL, HygieneAPI.getContinence(player) + ACCIDENT_CONTINENCE_PUNISHMENT));
             return false;

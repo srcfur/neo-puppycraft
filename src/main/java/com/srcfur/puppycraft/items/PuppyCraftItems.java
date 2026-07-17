@@ -38,6 +38,9 @@ public class PuppyCraftItems {
 
     public static DeferredItem<Item> DIAPER_BACK_SHEET = ITEMS.register("clothbacksheet", ()-> new Item(new Item.Properties()));;
 
+    public static DeferredItem<Item> DIAPER_TRASH = ITEMS.register("balled_diaper", ()-> new Item(new Item.Properties()
+            .stacksTo(1)));
+
     public static DeferredItem<Item> BABY_BOTTLE = ITEMS.register("empty_baby_bottle", ()->new Item(new Item.Properties()
             .stacksTo(1)));
     public static DeferredItem<Item> MILK_BABY_BOTTLE = ITEMS.register("baby_bottle_milk", ()->new BabyBottle(new Item.Properties()

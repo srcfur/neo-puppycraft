@@ -5,6 +5,7 @@ import com.srcfur.puppycraft.diapers.diaperbag.DiaperFamilies;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -12,6 +13,7 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.animatable.client.GeoRenderProvider;
@@ -74,5 +76,12 @@ public class DiaperItem extends Item implements GeoItem, ICurioItem, GeoRenderPr
     @Override
     public boolean canEquipFromUse(SlotContext slotContext, ItemStack stack) {
         return PuppyCraft.getDiaperOnPlayer((Player) slotContext.entity()).isEmpty();
+    }
+
+    @Override
+    public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
+        if((stack.get(DiaperCodecs.DIAPER_DATA_COMPONENT).urine() > 0 || !((DiaperItem)stack.getItem()).family.IsPullup()) && PuppyCraft.DEVELOPMENT_BUILD){
+            newStack.setCount(0);
+        }
     }
 }
