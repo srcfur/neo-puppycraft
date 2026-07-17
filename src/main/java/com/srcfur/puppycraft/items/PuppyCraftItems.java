@@ -1,13 +1,16 @@
 package com.srcfur.puppycraft.items;
 
-import com.srcfur.puppycraft.PuppyCraft;
+import com.srcfur.badhygiene.attributes.HygieneAttributes;
 import com.srcfur.puppycraft.blocks.PuppyCraftBlocks;
+import com.srcfur.puppycraft.deminuo.items.BabyBottle;
 import com.srcfur.puppycraft.diapers.diaperbag.DiaperBagItem;
+import com.srcfur.puppycraft.networking.PuppyComponents;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.event.IModBusEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -34,4 +37,16 @@ public class PuppyCraftItems {
     public static DeferredItem<Item> PREMIUM_DIAPER_CORE = ITEMS.register("threediapercore", ()->new Item(new Item.Properties()));;
 
     public static DeferredItem<Item> DIAPER_BACK_SHEET = ITEMS.register("clothbacksheet", ()-> new Item(new Item.Properties()));;
+
+    public static DeferredItem<Item> BABY_BOTTLE = ITEMS.register("empty_baby_bottle", ()->new Item(new Item.Properties()
+            .stacksTo(1)));
+    public static DeferredItem<Item> MILK_BABY_BOTTLE = ITEMS.register("baby_bottle_milk", ()->new BabyBottle(new Item.Properties()
+            .stacksTo(1)
+            .component(PuppyComponents.BOTTLE_COMPONENT, new BabyBottle.BottleData(20))
+            .food(new FoodProperties.Builder()
+                    .alwaysEdible()
+                    .nutrition(12)
+                    .usingConvertsTo(BABY_BOTTLE)
+                    .effect(()->new MobEffectInstance(HygieneAttributes.INCONTINENCE_EFFECT, 1200, 1), 1)
+                    .build())));
 }

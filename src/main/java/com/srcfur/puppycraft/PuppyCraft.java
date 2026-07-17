@@ -176,6 +176,11 @@ public class PuppyCraft {
             event.accept(PuppyCraftItems.CHEAP_DIAPER_CORE);
             event.accept(PuppyCraftItems.NORMAL_DIAPER_CORE);
             event.accept(PuppyCraftItems.PREMIUM_DIAPER_CORE);
+            event.accept(PuppyCraftItems.DIAPER_BACK_SHEET);
+        }
+        if(event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS){
+            event.accept(PuppyCraftItems.BABY_BOTTLE);
+            event.accept(PuppyCraftItems.MILK_BABY_BOTTLE);
         }
     }
 

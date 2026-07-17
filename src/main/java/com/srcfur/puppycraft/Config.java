@@ -17,18 +17,9 @@ public class Config {
             .comment("Whether to draw the old style urine meter")
             .define("urinemeter", true);
 
-    public static final ModConfigSpec.IntValue MAGIC_NUMBER = BUILDER
-            .comment("A magic number")
-            .defineInRange("magicNumber", 42, 0, Integer.MAX_VALUE);
-
-    public static final ModConfigSpec.ConfigValue<String> MAGIC_NUMBER_INTRODUCTION = BUILDER
-            .comment("What you want the introduction message to be for the magic number")
-            .define("magicNumberIntroduction", "The magic number is... ");
-
-    // a list of strings that are treated as resource locations for items
-    public static final ModConfigSpec.ConfigValue<List<? extends String>> ITEM_STRINGS = BUILDER
-            .comment("A list of items to log on common setup.")
-            .defineListAllowEmpty("items", List.of("minecraft:iron_ingot"), () -> "", Config::validateItemName);
+    public static final ModConfigSpec.BooleanValue ENABLED_DEMINUO = BUILDER
+            .comment("Will the regression system be enabled?")
+            .define("deminuo", true);
 
     static final ModConfigSpec SPEC = BUILDER.build();
 
