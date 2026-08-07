@@ -41,6 +41,11 @@ public class PuppyCraftItems {
     public static DeferredItem<Item> DIAPER_TRASH = ITEMS.register("balled_diaper", ()-> new Item(new Item.Properties()
             .stacksTo(1)));
 
+    public static DeferredItem<Item> SEASALT_BLOCK = ITEMS.register("seasalt", ()->new BlockItem(PuppyCraftBlocks.RAW_SALT_BLOCK.get(), new Item.Properties()));
+    public static DeferredItem<Item> RAW_SALT = ITEMS.register("raw_salt", ()->new Item(new Item.Properties()));
+    public static DeferredItem<Item> SALT = ITEMS.register("salt", ()->new Item(new Item.Properties()));
+
+    //Deminuo
     public static DeferredItem<Item> BABY_BOTTLE = ITEMS.register("empty_baby_bottle", ()->new Item(new Item.Properties()
             .stacksTo(1)));
     public static DeferredItem<Item> MILK_BABY_BOTTLE = ITEMS.register("baby_bottle_milk", ()->new BabyBottle(new Item.Properties()

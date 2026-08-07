@@ -4,6 +4,7 @@ import com.srcfur.puppycraft.diapers.diaperbag.DiaperBagBlock;
 import com.srcfur.puppycraft.diapers.diaperbag.DiaperBagEntity;
 import com.srcfur.puppycraft.puppyblocks.PuppyPadBlock;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
@@ -22,5 +23,6 @@ public class PuppyCraftBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
     public static DeferredBlock<DiaperBagBlock> DIAPER_BAG_BLOCK =
             BLOCKS.register("diaper_bag", () -> new DiaperBagBlock(BlockBehaviour.Properties.of().noOcclusion()));;
-    public static DeferredBlock<PuppyPadBlock> PUPPY_PAD_BLOCK = BLOCKS.register("puppy_pad", ()-> new PuppyPadBlock(BlockBehaviour.Properties.of().noOcclusion().randomTicks()));;
+    public static DeferredBlock<PuppyPadBlock> PUPPY_PAD_BLOCK = BLOCKS.register("puppy_pad", ()-> new PuppyPadBlock(BlockBehaviour.Properties.of().noOcclusion().randomTicks()));
+    public static DeferredBlock<Block> RAW_SALT_BLOCK = BLOCKS.register("seasalt", ()->new Block(BlockBehaviour.Properties.of().destroyTime(0.75f)));
 }

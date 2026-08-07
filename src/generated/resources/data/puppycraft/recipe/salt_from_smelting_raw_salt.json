@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 60,
+  "experience": 0.25,
+  "group": "salt",
+  "ingredient": {
+    "item": "puppycraft:raw_salt"
+  },
+  "result": {
+    "count": 1,
+    "id": "puppycraft:salt"
+  }
+}
