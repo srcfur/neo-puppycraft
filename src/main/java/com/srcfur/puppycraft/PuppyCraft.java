@@ -176,6 +176,7 @@ public class PuppyCraft {
                         .append(Component.translatable("item.puppycraft.woodpulp")).append(Component.literal(" can now be made by smoking either wood logs or sugar cane!"))),
                 Filterable.passThrough(Component.literal("New structure Fountain Of Youth\n\nA rare occuring fountain found in flowery forests. Does nothing... yet...")),
                 Filterable.passThrough(Component.literal("New structure Nursery\n\nA brick building found all across the world. Abandoned in their current state. May server use to the player, serving as an easy access to diapers.")),
+                Filterable.passThrough(Component.literal("Diaper bags now show the diaper that they are carrying in the inventory! This is a massive quality of life thing I've wanted FOREVER! And I'm so happy to finally deliver!")),
                 Filterable.passThrough(Component.literal("Feel free to message @srcfur on discord or bluesky with any issues / comments you may have with PuppyCraft! \n\n\n -Srcfur, forever more~")));
         debugbook.set(DataComponents.WRITTEN_BOOK_CONTENT, new WrittenBookContent(Filterable.passThrough("Development Booklet v" + ModList.get().getModFileById(PuppyCraft.MODID).versionString()), "Srcfur", 0, pages, true));
         if(plr.getInventory().findSlotMatchingItem(debugbook) == -1 && DEVELOPMENT_BUILD){
