@@ -8,15 +8,22 @@ import com.srcfur.puppycraft.diapers.diaperbag.DiaperBagEntity;
 import com.srcfur.puppycraft.diapers.diaperbag.DiaperBagItem;
 import com.srcfur.puppycraft.items.PuppyCraftItems;
 import com.srcfur.puppycraft.puppyblocks.PuppyPadBlock;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.network.Filterable;
+import net.minecraft.server.network.FilteredText;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.WrittenBookContent;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerSetSpawnEvent;
 import net.neoforged.neoforge.registries.*;
 import org.slf4j.Logger;
 
@@ -38,6 +45,7 @@ import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,7 +54,7 @@ import static com.srcfur.puppycraft.diapers.Diapers.SOILING_NOISE;
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(PuppyCraft.MODID)
 public class PuppyCraft {
-    public static final Boolean DEVELOPMENT_BUILD = false;
+    public static final Boolean DEVELOPMENT_BUILD = true;
 
     // Define mod id in a common place for everything to reference
     public static final String MODID = "puppycraft";
@@ -110,6 +118,7 @@ public class PuppyCraft {
         modEventBus.addListener(this::addCreative);
         NeoForge.EVENT_BUS.addListener(PuppyPadBlock::ServerTick);
         NeoForge.EVENT_BUS.addListener(PuppyCraft::onPlayerUsedPotty);
+        NeoForge.EVENT_BUS.addListener(PuppyCraft::onPlayerSpawnDebug);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
@@ -144,6 +153,34 @@ public class PuppyCraft {
 
     private void commonSetup(FMLCommonSetupEvent event) {
 
+    }
+
+    public static void onPlayerSpawnDebug(PlayerEvent.PlayerLoggedInEvent event){
+        Player plr = event.getEntity();
+        ItemStack debugbook = new ItemStack(
+                Items.WRITTEN_BOOK
+        );
+        List<Filterable<Component>> pages = List.of(Filterable.passThrough(Component.literal("Thank you for testing out the indev release of PuppyCraft! \n\n" +
+                "In the next few pages, you'll be able to find information regarding the additions that are in the indev vs the most current release!\n")),
+                Filterable.passThrough(Component.empty().append(Component.literal("New block ")).append(Component.translatable("block.puppycraft.seasalt"))
+                        .append(Component.literal("\n\n")).append(Component.translatable("block.puppycraft.seasalt")).append(Component.literal(" will now drop "))
+                        .append(Component.translatable("item.puppycraft.raw_salt")).append(Component.literal(", which may be smelted into ")).append(Component.translatable("item.puppycraft.salt"))
+                        .append(Component.literal(".\n\n"))
+                                .append(Component.translatable("item.puppycraft.cheapdiapersap"))
+                                .append(Component.literal(" is now made with 4x "))
+                                .append(Component.translatable("item.puppycraft.salt"))
+                                .append(Component.literal("!\n\n"))
+                        .append(Component.translatable("item.puppycraft.diapersap")).append(Component.literal(" is now made using 2x "))
+                        .append(Component.translatable("item.puppycraft.cheapdiapersap")).append(Component.literal(" and 2x ")).append(Component.translatable("item.puppycraft.woodpulp"))),
+                Filterable.passThrough(Component.literal("Changes to ").append(Component.translatable("item.puppycraft.woodpulp")).append(Component.literal(" recipe!\n\n"))
+                        .append(Component.translatable("item.puppycraft.woodpulp")).append(Component.literal(" can now be made by smoking either wood logs or sugar cane!"))),
+                Filterable.passThrough(Component.literal("New structure Fountain Of Youth\n\nA rare occuring fountain found in flowery forests. Does nothing... yet...")),
+                Filterable.passThrough(Component.literal("New structure Nursery\n\nA brick building found all across the world. Abandoned in their current state. May server use to the player, serving as an easy access to diapers.")),
+                Filterable.passThrough(Component.literal("Feel free to message @srcfur on discord or bluesky with any issues / comments you may have with PuppyCraft! \n\n\n -Srcfur, forever more~")));
+        debugbook.set(DataComponents.WRITTEN_BOOK_CONTENT, new WrittenBookContent(Filterable.passThrough("Development Booklet v" + ModList.get().getModFileById(PuppyCraft.MODID).versionString()), "Srcfur", 0, pages, true));
+        if(plr.getInventory().findSlotMatchingItem(debugbook) == -1 && DEVELOPMENT_BUILD){
+            plr.getInventory().add(debugbook);
+        }
     }
 
     public static void onPlayerUsedPotty(PlayerUsedToiletEvent event){

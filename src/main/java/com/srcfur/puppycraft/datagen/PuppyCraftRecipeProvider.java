@@ -4,10 +4,10 @@ import com.srcfur.puppycraft.PuppyCraft;
 import com.srcfur.puppycraft.items.PuppyCraftItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.data.recipes.*;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
@@ -22,6 +22,22 @@ public class PuppyCraftRecipeProvider extends RecipeProvider implements IConditi
     @Override
     protected void buildRecipes(RecipeOutput recipeOutput) {
         oreSmelting(recipeOutput, List.of(PuppyCraftItems.RAW_SALT.get()), RecipeCategory.MISC, PuppyCraftItems.SALT.get(), 0.25f, 60, "salt");
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,
+                PuppyCraftItems.CHEAP_ABSORBENT_POLYMER.get(),
+                1).requires(PuppyCraftItems.SALT.get(), 4)
+                .unlockedBy(getHasName(PuppyCraftItems.SALT.get()), has(PuppyCraftItems.SALT.get())).save(recipeOutput, PuppyCraft.MODID + ":cheap_sap");
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,
+                PuppyCraftItems.SUPER_ABSORBENT_POLYMER.get(),
+                1).requires(PuppyCraftItems.CHEAP_ABSORBENT_POLYMER.get(), 2).requires(PuppyCraftItems.WOOD_PULP.get(), 2)
+                .unlockedBy(getHasName(PuppyCraftItems.CHEAP_ABSORBENT_POLYMER.get()), has(PuppyCraftItems.CHEAP_ABSORBENT_POLYMER.get())).save(recipeOutput, PuppyCraft.MODID + ":sap");
+
+        SimpleCookingRecipeBuilder.smoking(Ingredient.of(Items.SUGAR_CANE),
+                        RecipeCategory.MISC, PuppyCraftItems.WOOD_PULP.get(), 0.1f, 20)
+                .unlockedBy(getHasName(Items.SUGAR_CANE), has(Items.SUGAR_CANE)).save(recipeOutput, PuppyCraft.MODID + ":pulp_from_sugarcane");
+        SimpleCookingRecipeBuilder.smoking(Ingredient.of(ItemTags.LOGS),
+                        RecipeCategory.MISC, new ItemStack(PuppyCraftItems.WOOD_PULP.get(), 2), 0.1f, 30)
+                .unlockedBy(getHasName(Items.SUGAR_CANE), has(Items.SUGAR_CANE)).save(recipeOutput, PuppyCraft.MODID + ":pulp_from_wood");
     }
 
     protected static void oreSmelting(RecipeOutput recipeOutput, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult,

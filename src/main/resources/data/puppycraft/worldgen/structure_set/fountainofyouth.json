@@ -1,0 +1,17 @@
+{
+  "structures": [
+    {
+      "structure": "puppycraft:fountainofyouth",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 100,
+    "separation": 25,
+    "spread_type": "triangular",
+    "salt": 2,
+    "frequency_reduction_method": "default",
+    "frequency": 1
+  }
+}

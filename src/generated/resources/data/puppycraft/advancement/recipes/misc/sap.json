@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cheapdiapersap": {
+      "conditions": {
+        "items": [
+          {
+            "items": "puppycraft:cheapdiapersap"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "puppycraft:sap"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_cheapdiapersap"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "puppycraft:sap"
+    ]
+  }
+}
