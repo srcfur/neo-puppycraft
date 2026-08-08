@@ -209,6 +209,8 @@ public class PuppyCraft {
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(PuppyCraftItems.RAW_SALT);
+            event.accept(PuppyCraftItems.SALT);
             event.accept(PuppyCraftItems.WOOD_PULP);
             event.accept(PuppyCraftItems.CHEAP_ABSORBENT_POLYMER);
             event.accept(PuppyCraftItems.SUPER_ABSORBENT_POLYMER);
@@ -220,6 +222,9 @@ public class PuppyCraft {
         if(event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS){
             event.accept(PuppyCraftItems.BABY_BOTTLE);
             event.accept(PuppyCraftItems.MILK_BABY_BOTTLE);
+        }
+        if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS){
+            event.accept(PuppyCraftItems.SEASALT_BLOCK);
         }
     }
 
