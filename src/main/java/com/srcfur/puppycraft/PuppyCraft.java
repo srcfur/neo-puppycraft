@@ -2,6 +2,7 @@ package com.srcfur.puppycraft;
 
 import com.srcfur.badhygiene.api.HygieneAPI;
 import com.srcfur.badhygiene.events.PlayerUsedToiletEvent;
+import com.srcfur.puppycraft.attachments.PuppyCraftAttachments;
 import com.srcfur.puppycraft.blocks.PuppyCraftBlocks;
 import com.srcfur.puppycraft.diapers.*;
 import com.srcfur.puppycraft.diapers.diaperbag.DiaperBagEntity;
@@ -86,6 +87,7 @@ public class PuppyCraft {
         // Register the Deferred Register to the mod event bus so tabs get registered
         CREATIVE_MODE_TABS.register(modEventBus);
         DATA_COMPONENTS.register(modEventBus);
+        PuppyCraftAttachments.ATTACHMENTS.register(modEventBus);
 
 
 
