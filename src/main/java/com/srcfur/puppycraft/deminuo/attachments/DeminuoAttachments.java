@@ -11,7 +11,7 @@ import java.util.function.Supplier;
 
 public class DeminuoAttachments {
     public static final Supplier<AttachmentType<Integer>> MATURITY = PuppyCraftAttachments.ATTACHMENTS
-            .register("mental_maturity", ()-> AttachmentType.<Integer>builder(()->18).serialize(Codec.intRange(0,20)).sync(new HygieneIntegerStreamCodec()).build());
+            .register("mental_maturity", ()-> AttachmentType.<Integer>builder(()->18000).serialize(Codec.intRange(0,20000)).sync(new HygieneIntegerStreamCodec()).build());
     public static void Initialize(){
 
     }

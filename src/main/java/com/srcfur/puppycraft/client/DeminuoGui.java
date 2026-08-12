@@ -25,7 +25,7 @@ public class DeminuoGui {
         if( plr != null ){
             int xoffset = Minecraft.getInstance().getWindow().getGuiScaledWidth() / 2 - 12 + 109 * (plr.getMainArm() == HumanoidArm.RIGHT ? 1 : -1);
             graphics.blitSprite(BRAIN_GUI, xoffset, yoffset, 24, 24);
-            graphics.drawCenteredString(Minecraft.getInstance().font, plr.getData(DeminuoAttachments.MATURITY).toString(), xoffset + 13, yoffset + 7, Color.WHITE.getRGB());
+            graphics.drawCenteredString(Minecraft.getInstance().font, String.valueOf((plr.getData(DeminuoAttachments.MATURITY) / 1000)), xoffset + 13, yoffset + 7, Color.WHITE.getRGB());
         }
     }
 }
