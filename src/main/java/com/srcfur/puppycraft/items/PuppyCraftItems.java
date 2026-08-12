@@ -25,6 +25,7 @@ public class PuppyCraftItems {
 
     public static DeferredItem<BlockItem> DIAPER_BAG_ITEM = ITEMS.register("diaper_bag", ()-> new DiaperBagItem(PuppyCraftBlocks.DIAPER_BAG_BLOCK.value(), new Item.Properties().stacksTo(1)));
     public static DeferredItem<BlockItem> PUPPY_PAD_ITEM = ITEMS.register("puppy_pad", ()->new BlockItem(PuppyCraftBlocks.PUPPY_PAD_BLOCK.value(), new Item.Properties()));
+    public static DeferredItem<BlockItem> DIAPER_ROLLER = ITEMS.register("diaper_roller", ()->new BlockItem(PuppyCraftBlocks.DIAPER_ROLLER_BLOCK.value(), new Item.Properties()));
 
     //Sap pipeline
     public static DeferredItem<Item> WOOD_PULP = ITEMS.register("woodpulp", ()->new Item(new Item.Properties()));;

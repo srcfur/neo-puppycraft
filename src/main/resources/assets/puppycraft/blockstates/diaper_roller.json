@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "puppycraft:block/diaper_roller", "y": 90 },
+    "facing=east": { "model": "puppycraft:block/diaper_roller", "y": 180 },
+    "facing=south": { "model": "puppycraft:block/diaper_roller", "y": 270 },
+    "facing=west": { "model": "puppycraft:block/diaper_roller", "y": 0 }
+  }
+}
