@@ -26,7 +26,8 @@ public class DataPacker {
 
         generator.addProvider(event.includeServer(), new ModDatapackProvider(output, lookupProvider));
         generator.addProvider(event.includeServer(), new LootTableProvider(output, Collections.emptySet(),
-                List.of(new LootTableProvider.SubProviderEntry(PuppyCraftBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider));
+                List.of(new LootTableProvider.SubProviderEntry(PuppyCraftBlockLootTableProvider::new, LootContextParamSets.BLOCK),
+                        new LootTableProvider.SubProviderEntry(PuppyCraftLootTableProvider::new, LootContextParamSets.ALL_PARAMS)), lookupProvider));
         generator.addProvider(event.includeServer(), new PuppyCraftTagProvider(output, lookupProvider, helpey));
         generator.addProvider(event.includeServer(), new PuppyCraftRecipeProvider(output, lookupProvider));
     }

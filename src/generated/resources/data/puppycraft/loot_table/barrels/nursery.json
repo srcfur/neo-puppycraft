@@ -1,0 +1,46 @@
+{
+  "functions": [
+    {
+      "add": false,
+      "count": 1.0,
+      "function": "minecraft:set_count"
+    }
+  ],
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "puppycraft:baby_bottle_milk",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "puppycraft:baby_bottle_youth"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:carrot",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:apple",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cookie",
+          "weight": 5
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 9.0,
+        "min": 3.0
+      }
+    }
+  ],
+  "random_sequence": "puppycraft:barrels/nursery"
+}

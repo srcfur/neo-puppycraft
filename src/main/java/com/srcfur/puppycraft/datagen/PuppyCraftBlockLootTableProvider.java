@@ -41,7 +41,8 @@ public class PuppyCraftBlockLootTableProvider extends BlockLootSubProvider {
     protected Iterable<Block> getKnownBlocks() {
         return PuppyCraftBlocks.BLOCKS.getEntries().stream().map(Holder::value).filter(block ->
                 (block != PuppyCraftBlocks.DIAPER_BAG_BLOCK.get()) &&
-                        (block != PuppyCraftBlocks.PUPPY_PAD_BLOCK.get())
+                        (block != PuppyCraftBlocks.PUPPY_PAD_BLOCK.get()) &&
+                        (block != PuppyCraftBlocks.DIAPER_ROLLER_BLOCK.get())
         )::iterator;
     }
 }
