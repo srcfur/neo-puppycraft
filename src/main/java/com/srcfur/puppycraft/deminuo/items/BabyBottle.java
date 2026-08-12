@@ -17,13 +17,15 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 public class BabyBottle extends Item {
-    public record BottleData(int urine){
+    public record BottleData(int urine, int maturity){
 
     }
     public static final Codec<BottleData> BOTTLE_DATA_CODEC = RecordCodecBuilder.create( instance ->
-        instance.group(Codec.INT.fieldOf("urine").forGetter(BottleData::urine)).apply(instance, BottleData::new));
+        instance.group(Codec.INT.fieldOf("urine").forGetter(BottleData::urine),
+                Codec.INT.fieldOf("maturity").forGetter(BottleData::maturity)).apply(instance, BottleData::new));
     public static final StreamCodec<ByteBuf, BottleData> BOTTLE_DATA_STREAM = StreamCodec.composite(
             ByteBufCodecs.INT, BottleData::urine,
+            ByteBufCodecs.INT, BottleData::maturity,
             BottleData::new
     );
 
@@ -43,7 +45,7 @@ public class BabyBottle extends Item {
             if(Config.ENABLED_DEMINUO.getAsBoolean()){
                 Player plr = (Player) livingEntity;
                 HygieneAPI.setBladderLevel(plr, HygieneAPI.getBladderLevel(plr) + stack.get(PuppyComponents.BOTTLE_COMPONENT).urine());
-                plr.setData(DeminuoAttachments.MATURITY, Math.max(plr.getData(DeminuoAttachments.MATURITY) - 250, 0));
+                plr.setData(DeminuoAttachments.MATURITY, Math.max(plr.getData(DeminuoAttachments.MATURITY) - stack.get(PuppyComponents.BOTTLE_COMPONENT).maturity(), 0));
             }
         }catch(Exception ex){
             PuppyCraft.LOGGER.warn("Non player tried using a baby bottle... is my best guess :P", ex);

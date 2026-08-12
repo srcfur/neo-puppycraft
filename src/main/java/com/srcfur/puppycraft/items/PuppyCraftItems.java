@@ -55,11 +55,20 @@ public class PuppyCraftItems {
             .stacksTo(1)));
     public static DeferredItem<Item> MILK_BABY_BOTTLE = ITEMS.register("baby_bottle_milk", ()->new BabyBottle(new Item.Properties()
             .stacksTo(1)
-            .component(PuppyComponents.BOTTLE_COMPONENT, new BabyBottle.BottleData(20))
+            .component(PuppyComponents.BOTTLE_COMPONENT, new BabyBottle.BottleData(20, 200))
+            .food(new FoodProperties.Builder()
+                    .alwaysEdible()
+                    .nutrition(8)
+                    .saturationModifier(8)
+                    .usingConvertsTo(BABY_BOTTLE)
+                    .build())));
+    public static DeferredItem<Item> FOY_BABY_BOTTLE = ITEMS.register("baby_bottle_youth", ()->new BabyBottle(new Item.Properties()
+            .stacksTo(1)
+            .component(PuppyComponents.BOTTLE_COMPONENT, new BabyBottle.BottleData(20, 3000))
             .food(new FoodProperties.Builder()
                     .alwaysEdible()
                     .nutrition(12)
                     .usingConvertsTo(BABY_BOTTLE)
-                    .effect(()->new MobEffectInstance(HygieneAttributes.INCONTINENCE_EFFECT, 1200, 1), 1)
+                    .effect(()->new MobEffectInstance(HygieneAttributes.INCONTINENCE_EFFECT, 12000, 2), 1)
                     .build())));
 }
