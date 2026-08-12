@@ -4,6 +4,7 @@ import com.srcfur.badhygiene.api.HygieneAPI;
 import com.srcfur.badhygiene.events.PlayerUsedToiletEvent;
 import com.srcfur.puppycraft.attachments.PuppyCraftAttachments;
 import com.srcfur.puppycraft.blocks.PuppyCraftBlocks;
+import com.srcfur.puppycraft.deminuo.attachments.DeminuoAttachments;
 import com.srcfur.puppycraft.diapers.*;
 import com.srcfur.puppycraft.diapers.diaperbag.DiaperBagEntity;
 import com.srcfur.puppycraft.diapers.diaperbag.DiaperBagItem;
@@ -151,6 +152,7 @@ public class PuppyCraft {
                         })
                         .build());
         Diapers.initialize();
+        DeminuoAttachments.Initialize();
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {

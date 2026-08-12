@@ -1,5 +1,6 @@
 package com.srcfur.puppycraft.mixin.client;
 
+import com.srcfur.puppycraft.client.DeminuoGui;
 import com.srcfur.puppycraft.client.LegacyUrineMeter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -18,6 +19,7 @@ public class GuiMixin {
         var minecraft = Minecraft.getInstance();
         if (!minecraft.options.hideGui && minecraft.getCameraEntity() instanceof Player && minecraft.gameMode != null && minecraft.gameMode.canHurtPlayer()) {
             LegacyUrineMeter.render(guiGraphics);
+            DeminuoGui.render(guiGraphics);
         }
     }
 }
