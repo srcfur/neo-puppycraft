@@ -112,6 +112,9 @@ public class PuppyCraft {
                 return didcatch;
             }
             HygieneAPI.setContinence(player, Math.max(MINIMUM_CONTINENCE_LEVEL, HygieneAPI.getContinence(player) + ACCIDENT_CONTINENCE_PUNISHMENT));
+            if(Config.ENABLED_DEMINUO.getAsBoolean()){
+                player.setData(DeminuoAttachments.MATURITY, Math.min(player.getData(DeminuoAttachments.MATURITY) - 150, 0));
+            }
             return false;
         });
 
@@ -191,6 +194,9 @@ public class PuppyCraft {
     public static void onPlayerUsedPotty(PlayerUsedToiletEvent event){
         if(HygieneAPI.getBladderLevel(event.player) == 0){
             HygieneAPI.setContinence(event.player, Math.min(HygieneAPI.getContinence(event.player) + 5, MAXIMUM_CONTINENCE_LEVEL));
+            if(Config.ENABLED_DEMINUO.getAsBoolean()){
+                event.player.setData(DeminuoAttachments.MATURITY, Math.min(event.player.getData(DeminuoAttachments.MATURITY) + 100, 20000));
+            }
         }
     }
 

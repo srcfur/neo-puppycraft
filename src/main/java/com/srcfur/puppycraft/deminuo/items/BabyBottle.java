@@ -5,6 +5,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.srcfur.badhygiene.api.HygieneAPI;
 import com.srcfur.puppycraft.Config;
 import com.srcfur.puppycraft.PuppyCraft;
+import com.srcfur.puppycraft.deminuo.attachments.DeminuoAttachments;
 import com.srcfur.puppycraft.networking.PuppyComponents;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
@@ -42,6 +43,7 @@ public class BabyBottle extends Item {
             if(Config.ENABLED_DEMINUO.getAsBoolean()){
                 Player plr = (Player) livingEntity;
                 HygieneAPI.setBladderLevel(plr, HygieneAPI.getBladderLevel(plr) + stack.get(PuppyComponents.BOTTLE_COMPONENT).urine());
+                plr.setData(DeminuoAttachments.MATURITY, Math.max(plr.getData(DeminuoAttachments.MATURITY) - 250, 0));
             }
         }catch(Exception ex){
             PuppyCraft.LOGGER.warn("Non player tried using a baby bottle... is my best guess :P", ex);
