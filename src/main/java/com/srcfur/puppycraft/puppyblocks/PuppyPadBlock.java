@@ -2,8 +2,10 @@ package com.srcfur.puppycraft.puppyblocks;
 
 import com.srcfur.badhygiene.api.HygieneAPI;
 import com.srcfur.badhygiene.attributes.HygieneAttributes;
+import com.srcfur.puppycraft.Config;
 import com.srcfur.puppycraft.PuppyCraft;
 import com.srcfur.puppycraft.blocks.PuppyCraftBlocks;
+import com.srcfur.puppycraft.deminuo.attachments.DeminuoAttachments;
 import joptsimple.util.KeyValuePair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -61,6 +63,9 @@ public class PuppyPadBlock extends CarpetBlock {
                 HygieneAPI.setBladderLevel(player, 0);
                 HygieneAPI.setContinence(player, Math.min(HygieneAPI.getContinence(player) + 3, PuppyCraft.MAXIMUM_CONTINENCE_LEVEL));
                 player.addEffect(new MobEffectInstance(HygieneAttributes.INCONTINENCE_EFFECT, 6000, 0));
+                if(Config.ENABLED_DEMINUO.getAsBoolean()){
+                    player.setData(DeminuoAttachments.MATURITY, Math.max(player.getData(DeminuoAttachments.MATURITY) - 200, 0));
+                }
                 return InteractionResult.CONSUME;
             }
             else

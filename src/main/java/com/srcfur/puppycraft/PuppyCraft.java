@@ -50,6 +50,7 @@ import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Filter;
 
 import static com.srcfur.puppycraft.diapers.Diapers.SOILING_NOISE;
 
@@ -184,6 +185,8 @@ public class PuppyCraft {
                 Filterable.passThrough(Component.literal("New structure Fountain Of Youth\n\nA rare occuring fountain found in flowery forests. Does nothing... yet...")),
                 Filterable.passThrough(Component.literal("New structure Nursery\n\nA brick building found all across the world. Abandoned in their current state. May server use to the player, serving as an easy access to diapers.")),
                 Filterable.passThrough(Component.literal("Diaper bags now show the diaper that they are carrying in the inventory! This is a massive quality of life thing I've wanted FOREVER! And I'm so happy to finally deliver!")),
+                Filterable.passThrough(Component.literal("Fountain Of Youth Water\n\nA new fluid, which is designed to work with the regression system! For easy regression, if you can get your paws on it!")),
+                Filterable.passThrough(Component.literal("Big thanks to Lexifuzzpup\n\nWho redesigned a bunch of the item textures, and worked on the sea salt block texture! Hope to work with them again in the future :3")),
                 Filterable.passThrough(Component.literal("Feel free to message @srcfur on discord or bluesky with any issues / comments you may have with PuppyCraft! \n\n\n -Srcfur, forever more~")));
         debugbook.set(DataComponents.WRITTEN_BOOK_CONTENT, new WrittenBookContent(Filterable.passThrough("Development Booklet v" + ModList.get().getModFileById(PuppyCraft.MODID).versionString()), "Srcfur", 0, pages, true));
         if(plr.getInventory().findSlotMatchingItem(debugbook) == -1 && DEVELOPMENT_BUILD){
