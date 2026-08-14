@@ -38,6 +38,20 @@ public class PuppyCraftRecipeProvider extends RecipeProvider implements IConditi
         SimpleCookingRecipeBuilder.smoking(Ingredient.of(ItemTags.LOGS),
                         RecipeCategory.MISC, new ItemStack(PuppyCraftItems.WOOD_PULP.get(), 2), 0.1f, 30)
                 .unlockedBy(getHasName(Items.SUGAR_CANE), has(Items.SUGAR_CANE)).save(recipeOutput, PuppyCraft.MODID + ":pulp_from_wood");
+
+        createDiaperCoreRecipe(recipeOutput, PuppyCraftItems.SALT, PuppyCraftItems.CHEAP_DIAPER_CORE);
+        createDiaperCoreRecipe(recipeOutput, PuppyCraftItems.CHEAP_ABSORBENT_POLYMER, PuppyCraftItems.NORMAL_DIAPER_CORE);
+        createDiaperCoreRecipe(recipeOutput, PuppyCraftItems.SUPER_ABSORBENT_POLYMER, PuppyCraftItems.PREMIUM_DIAPER_CORE);
+    }
+
+    protected static void createDiaperCoreRecipe(RecipeOutput output, ItemLike filling, ItemLike result){
+        var recipe = ShapedRecipeBuilder.shaped(
+                RecipeCategory.MISC,
+                result).define('P', Items.PAPER).define('C', filling);
+        for(int i = 0; i < 3; i++){
+            recipe.pattern("PCP");
+        }
+        recipe.unlockedBy(getHasName(filling), has(filling)).save(output, PuppyCraft.MODID + ":crafting_table_core_" + getItemName(result));
     }
 
     protected static void oreSmelting(RecipeOutput recipeOutput, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult,
