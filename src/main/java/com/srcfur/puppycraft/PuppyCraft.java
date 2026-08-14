@@ -4,6 +4,7 @@ import com.srcfur.badhygiene.api.HygieneAPI;
 import com.srcfur.badhygiene.events.PlayerUsedToiletEvent;
 import com.srcfur.puppycraft.attachments.PuppyCraftAttachments;
 import com.srcfur.puppycraft.blocks.PuppyCraftBlocks;
+import com.srcfur.puppycraft.compat.BadHygieneIntegration;
 import com.srcfur.puppycraft.deminuo.attachments.DeminuoAttachments;
 import com.srcfur.puppycraft.diapers.*;
 import com.srcfur.puppycraft.diapers.diaperbag.DiaperBagEntity;
@@ -123,6 +124,7 @@ public class PuppyCraft {
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
+        NeoForge.EVENT_BUS.register(new BadHygieneIntegration());
         NeoForge.EVENT_BUS.addListener(PuppyPadBlock::ServerTick);
         NeoForge.EVENT_BUS.addListener(PuppyCraft::onPlayerUsedPotty);
         NeoForge.EVENT_BUS.addListener(PuppyCraft::onPlayerSpawnDebug);
