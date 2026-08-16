@@ -54,6 +54,11 @@ public class DiaperItem extends Item implements GeoItem, ICurioItem, GeoRenderPr
     }
 
     @Override
+    public void setDamage(ItemStack stack, int damage) {
+        stack.set(DiaperCodecs.DIAPER_DATA_COMPONENT, new DiaperStackData(damage));
+    }
+
+    @Override
     public void createGeoRenderer(Consumer<GeoRenderProvider> consumer) {
         consumer.accept(new GeoRenderProvider() {
             private GeoArmorRenderer<?> renderer;
