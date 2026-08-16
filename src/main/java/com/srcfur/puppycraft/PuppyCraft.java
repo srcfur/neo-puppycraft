@@ -58,7 +58,7 @@ import static com.srcfur.puppycraft.diapers.Diapers.SOILING_NOISE;
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(PuppyCraft.MODID)
 public class PuppyCraft {
-    public static final Boolean DEVELOPMENT_BUILD = true;
+    public static final Boolean DEVELOPMENT_BUILD = false;
 
     // Define mod id in a common place for everything to reference
     public static final String MODID = "puppycraft";
@@ -239,6 +239,7 @@ public class PuppyCraft {
         if(event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS){
             event.accept(PuppyCraftItems.BABY_BOTTLE);
             event.accept(PuppyCraftItems.MILK_BABY_BOTTLE);
+            event.accept(PuppyCraftItems.FOY_BABY_BOTTLE);
         }
         if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS){
             event.accept(PuppyCraftItems.SEASALT_BLOCK);
